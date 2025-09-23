@@ -24,7 +24,8 @@ const HeroSection = () => {
                 <img 
                   src={profileImage} 
                   alt="Sajal's Profile" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
+                  style={{ imageRendering: 'crisp-edges' }}
                 />
               </div>
             </div>
