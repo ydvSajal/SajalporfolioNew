@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import profileImage from '@/assets/profile.png';
 
 const HeroSection = () => {
   return (
@@ -21,7 +22,7 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-card-border shadow-3d group-hover:shadow-3d-lg transition-all duration-500 transform group-hover:scale-105">
                 <img 
-                  src="https://ydvsajal.github.io/S.P/PIC.jpg" 
+                  src={profileImage} 
                   alt="Sajal's Profile" 
                   className="w-full h-full object-cover"
                 />
