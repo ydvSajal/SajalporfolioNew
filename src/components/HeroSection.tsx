@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
-import profileImage from '@/assets/profile.png';
+import profileImage from '@/assets/profile.jpg';
 
 const HeroSection = () => {
   return (
