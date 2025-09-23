@@ -18,14 +18,15 @@ const HeroSection = () => {
           {/* Left Content */}
           <div className="space-y-8 text-center lg:text-left">
             {/* Profile Image */}
-            <div className="relative mx-auto lg:mx-0 w-48 h-48 group">
+            <div className="relative mx-auto lg:mx-0 w-56 h-56 group">
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-card-border shadow-3d group-hover:shadow-3d-lg transition-all duration-500 transform group-hover:scale-105">
                 <img 
-                  src={profileImage} 
+                  src="https://drive.google.com/uc?export=view&id=1lcNdAHAVzuzTh761Vrtyi_W_IzuN4aw8" 
                   alt="Sajal's Profile" 
                   className="w-full h-full object-cover object-center"
                   style={{ imageRendering: 'crisp-edges' }}
+                  loading="lazy"
                 />
               </div>
             </div>
