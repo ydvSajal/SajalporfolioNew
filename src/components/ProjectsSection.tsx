@@ -8,7 +8,7 @@ const ProjectsSection = () => {
       description: 'Apne hostel ka OLX — BU Campus Buy, sell, borrow — sab kuch campus ke andar.',
       fullDescription: 'Safe, fast, aur bina jhanjhat.',
       technologies: ['HTML', 'CSS', 'JavaScript'],
-      liveUrl: 'https://hostel-deal-finder.vercel.app/',
+      liveUrl: 'https://bubasket.vercel.app/',
       color: 'from-indigo-500 to-purple-600'
     },
     {
