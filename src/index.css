@@ -269,4 +269,15 @@ All colors MUST be HSL for perfect theming.
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary-dark));
   }
+  
+  /* Custom shimmer animation */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  /* Text shadow utility */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 }
