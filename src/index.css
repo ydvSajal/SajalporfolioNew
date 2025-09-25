@@ -171,6 +171,10 @@ All colors MUST be HSL for perfect theming.
     perspective: 1000px;
   }
   
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  
   .transform-3d {
     transform-style: preserve-3d;
   }
@@ -183,10 +187,50 @@ All colors MUST be HSL for perfect theming.
     transform: rotateX(6deg);
   }
   
+  .rotate-y-6 {
+    transform: rotateY(6deg);
+  }
+  
+  .rotate-x-3 {
+    transform: rotateX(3deg);
+  }
+  
   .glass-effect {
     backdrop-filter: blur(20px);
     background: hsl(var(--card) / 0.8);
     border: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  /* 3D Hover Effects */
+  .hover-3d:hover {
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale3d(1.05, 1.05, 1.05);
+  }
+  
+  /* Enhanced 3D Animations */
+  @keyframes float-3d {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotateX(10deg) rotateY(5deg);
+    }
+  }
+  
+  @keyframes rotate-3d {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+      transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+  }
+  
+  .animate-float-3d {
+    animation: float-3d 6s ease-in-out infinite;
+  }
+  
+  .animate-rotate-3d {
+    animation: rotate-3d 20s linear infinite;
   }
 }
 
