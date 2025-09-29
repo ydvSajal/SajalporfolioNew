@@ -8,74 +8,69 @@ All colors MUST be HSL for perfect theming.
 
 @layer base {
   :root {
-    /* Core Background System */
-    --background: 220 25% 5%;
-    --background-secondary: 220 20% 8%;
-    --background-tertiary: 220 15% 12%;
-    --foreground: 220 20% 95%;
+    /* Warm, handmade color system */
+    --background: 30 12% 94%;
+    --background-secondary: 32 15% 88%;
+    --background-tertiary: 35 18% 82%;
+    --foreground: 25 25% 15%;
 
-    /* Card System with 3D depth */
-    --card: 220 20% 10%;
-    --card-hover: 220 18% 14%;
-    --card-foreground: 220 15% 92%;
-    --card-border: 220 25% 18%;
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-hover: 30 20% 97%;
+    --card-foreground: 25 25% 15%;
+    --card-border: 30 15% 85%;
 
     /* Popover System */
-    --popover: 220 20% 8%;
-    --popover-foreground: 220 15% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 25% 15%;
 
-    /* Primary Purple Gradient System */
-    --primary: 255 85% 65%;
-    --primary-dark: 250 75% 55%;
-    --primary-light: 260 95% 75%;
-    --primary-foreground: 220 25% 5%;
+    /* Primary - Warm terracotta */
+    --primary: 15 75% 55%;
+    --primary-dark: 15 70% 45%;
+    --primary-light: 15 80% 65%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary System */
-    --secondary: 220 20% 15%;
-    --secondary-foreground: 220 15% 85%;
-    --secondary-glow: 220 25% 25%;
+    /* Secondary */
+    --secondary: 35 25% 75%;
+    --secondary-foreground: 25 25% 15%;
+    --secondary-glow: 35 30% 65%;
 
-    /* Muted System */
-    --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 65%;
+    /* Muted */
+    --muted: 30 15% 85%;
+    --muted-foreground: 25 10% 45%;
 
-    /* Accent System */
-    --accent: 180 100% 70%;
-    --accent-dark: 170 90% 60%;
-    --accent-foreground: 220 25% 5%;
+    /* Accent - Warm olive */
+    --accent: 85 30% 45%;
+    --accent-dark: 85 35% 35%;
+    --accent-foreground: 0 0% 100%;
 
     /* Status Colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 220 20% 95%;
-    --success: 120 60% 55%;
-    --warning: 40 95% 65%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 145 55% 45%;
+    --warning: 40 90% 55%;
 
     /* Interactive Elements */
-    --border: 220 25% 20%;
-    --input: 220 20% 15%;
-    --ring: 255 85% 65%;
+    --border: 30 15% 80%;
+    --input: 30 20% 95%;
+    --ring: 15 75% 55%;
 
-    /* 3D Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(255 85% 65%) 0%, hsl(280 85% 70%) 50%, hsl(250 75% 55%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(220 20% 15%) 0%, hsl(220 25% 20%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(255 85% 65%) 0%, hsl(280 85% 70%) 25%, hsl(200 85% 70%) 75%, hsl(170 85% 65%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 20% 10%) 0%, hsl(220 18% 14%) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(255 85% 65% / 0.3) 0%, transparent 70%);
+    /* Simple gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(15 75% 55%) 0%, hsl(25 70% 50%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(35 25% 75%) 0%, hsl(30 20% 70%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(15 75% 55%) 0%, hsl(85 30% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(30 20% 97%) 100%);
 
-    /* 3D Shadows */
-    --shadow-sm: 0 2px 8px hsl(220 25% 5% / 0.3);
-    --shadow-md: 0 8px 25px hsl(220 25% 5% / 0.4);
-    --shadow-lg: 0 15px 50px hsl(220 25% 5% / 0.5);
-    --shadow-glow: 0 0 40px hsl(255 85% 65% / 0.3);
-    --shadow-card: 0 8px 32px hsl(220 25% 5% / 0.6), 0 2px 8px hsl(220 25% 5% / 0.4);
-    --shadow-float: 0 20px 60px hsl(220 25% 5% / 0.7), 0 8px 20px hsl(220 25% 5% / 0.5);
+    /* Subtle shadows */
+    --shadow-sm: 0 1px 3px hsl(25 25% 15% / 0.08);
+    --shadow-md: 0 4px 12px hsl(25 25% 15% / 0.12);
+    --shadow-lg: 0 8px 24px hsl(25 25% 15% / 0.15);
+    --shadow-card: 0 2px 8px hsl(25 25% 15% / 0.08);
 
-    /* Animation & Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    --transition-glow: all 0.4s ease-out;
+    /* Transitions */
+    --transition-smooth: all 0.2s ease;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -241,10 +236,6 @@ All colors MUST be HSL for perfect theming.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-image: 
-      radial-gradient(circle at 20% 80%, hsl(255 85% 65% / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(180 100% 70% / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, hsl(280 85% 70% / 0.05) 0%, transparent 50%);
   }
   
   /* Smooth scrolling */
@@ -262,12 +253,12 @@ All colors MUST be HSL for perfect theming.
   }
   
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
+    background: hsl(var(--muted));
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary-dark));
+    background: hsl(var(--muted-foreground));
   }
   
   /* Custom shimmer animation */
