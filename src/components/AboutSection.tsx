@@ -30,10 +30,10 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="py-20 bg-background-secondary relative overflow-hidden">
-      {/* Background Pattern */}
+      {/* Subtle Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-16 left-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-16 right-16 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute top-16 left-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-16 right-16 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -70,66 +70,55 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Fun Stats */}
+            {/* Stats */}
             <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="bg-gradient-card border border-card-border rounded-xl p-4 text-center shadow-3d hover:shadow-3d-lg transition-all duration-300 group">
-                <div className="text-2xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">6+</div>
-                <div className="text-sm text-muted-foreground">Projects Completed</div>
+              <div className="bg-gradient-card border border-card-border rounded-lg p-5 text-center shadow-card hover:shadow-float transition-all duration-300">
+                <div className="text-3xl font-bold text-primary mb-1">6+</div>
+                <div className="text-sm text-muted-foreground">Projects</div>
               </div>
-              <div className="bg-gradient-card border border-card-border rounded-xl p-4 text-center shadow-3d hover:shadow-3d-lg transition-all duration-300 group">
-                <div className="text-2xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">3+</div>
-                <div className="text-sm text-muted-foreground">Years Learning</div>
+              <div className="bg-gradient-card border border-card-border rounded-lg p-5 text-center shadow-card hover:shadow-float transition-all duration-300">
+                <div className="text-3xl font-bold text-accent mb-1">3+</div>
+                <div className="text-sm text-muted-foreground">Years</div>
               </div>
             </div>
           </div>
 
           {/* Right Content - Personal Information */}
-          <div className="relative">
-            <div className="bg-gradient-card border border-card-border rounded-2xl p-8 shadow-3d-lg backdrop-blur-xl">
-              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-                Personal Information
-              </h3>
-              
-              <div className="space-y-6">
-                {personalInfo.map((info, index) => (
-                  <div 
-                    key={info.label}
-                    className="group flex items-start space-x-4 p-4 rounded-xl bg-card/50 border border-card-border/50 hover:bg-card-hover/50 transition-all duration-300 hover:shadow-glow"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className={`p-3 rounded-xl bg-gradient-to-br from-card-hover to-card border border-card-border group-hover:scale-110 transition-transform duration-300`}>
-                      <info.icon className={`h-5 w-5 ${info.color}`} />
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
-                        {info.label}
-                      </h4>
-                      <p className="text-muted-foreground text-sm break-words">
-                        {info.value}
-                      </p>
-                    </div>
+          <div className="bg-gradient-card border border-card-border rounded-xl p-8 shadow-card hover:shadow-float transition-all duration-300">
+            <h3 className="text-2xl font-semibold text-foreground mb-6">Personal Info</h3>
+            
+            <div className="space-y-5">
+              {personalInfo.map((info) => (
+                <div 
+                  key={info.label}
+                  className="group flex items-start space-x-4 p-4 rounded-lg bg-card/30 border border-card-border/50 hover:bg-card-hover/50 transition-all duration-300"
+                >
+                  <div className="p-2.5 rounded-lg bg-card-hover border border-card-border">
+                    <info.icon className={`h-5 w-5 ${info.color}`} />
                   </div>
-                ))}
-              </div>
-
-              {/* Education Timeline */}
-              <div className="mt-8 pt-6 border-t border-card-border">
-                <h4 className="font-semibold text-foreground mb-4 text-center">Current Focus</h4>
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 bg-gradient-primary/10 border border-primary/30 rounded-full px-4 py-2">
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    <span className="text-sm font-medium text-primary">
-                      Learning Full-Stack Development
-                    </span>
+                  
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-foreground/90 mb-0.5 text-sm">
+                      {info.label}
+                    </h4>
+                    <p className="text-muted-foreground text-sm break-words">
+                      {info.value}
+                    </p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
 
-            {/* Floating Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-primary rounded-full opacity-80 animate-bounce" style={{ animationDelay: '0.5s' }} />
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent rounded-full opacity-80 animate-bounce" style={{ animationDelay: '1.5s' }} />
+            {/* Current Focus */}
+            <div className="mt-8 pt-6 border-t border-card-border/50">
+              <h4 className="font-medium text-foreground/90 mb-3 text-sm">Current Focus</h4>
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
+                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm text-primary/90">
+                  Full-Stack Development
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
