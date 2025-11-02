@@ -33,7 +33,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-background-secondary relative overflow-hidden">
+    <section id="skills" className="py-12 md:py-20 bg-background-secondary relative overflow-hidden">
       {/* Subtle Background */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
@@ -42,37 +42,37 @@ const SkillsSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               My Skills
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto mb-6 rounded-full" />
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <div className="w-20 h-1 bg-gradient-primary mx-auto mb-4 md:mb-6 rounded-full" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-lg">
             I've developed a diverse skill set through my academic journey and personal projects.
           </p>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {skillCategories.map((category) => (
             <div key={category.title} className="group">
-              <div className="bg-gradient-card border border-card-border rounded-xl p-6 shadow-card hover:shadow-float transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-gradient-card border border-card-border rounded-xl p-5 md:p-6 shadow-card hover:shadow-float transition-all duration-300 hover:-translate-y-1">
                 {/* Icon */}
-                <div className="mb-5">
-                  <div className="w-12 h-12 rounded-lg bg-card-hover border border-card-border flex items-center justify-center">
-                    <category.icon className={`h-6 w-6 ${category.color}`} />
+                <div className="mb-4 md:mb-5">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-card-hover border border-card-border flex items-center justify-center">
+                    <category.icon className={`h-5 w-5 md:h-6 md:w-6 ${category.color}`} />
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-foreground mb-2">
+                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">
                   {category.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                <p className="text-muted-foreground text-xs md:text-sm mb-4 leading-relaxed">
                   {category.description}
                 </p>
 
@@ -80,8 +80,8 @@ const SkillsSection = () => {
                 <div className="space-y-2">
                   {category.skills.map((skill) => (
                     <div key={skill} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-success/70 mr-2 flex-shrink-0" />
-                      <span className="text-foreground/70 text-sm">
+                      <CheckCircle className="h-3.5 w-3.5 md:h-4 md:w-4 text-success/70 mr-2 flex-shrink-0" />
+                      <span className="text-foreground/70 text-xs md:text-sm">
                         {skill}
                       </span>
                     </div>
@@ -93,13 +93,13 @@ const SkillsSection = () => {
         </div>
 
         {/* Additional Skills */}
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground text-sm mb-3">Technologies I work with</p>
+        <div className="mt-10 md:mt-12 text-center">
+          <p className="text-muted-foreground text-xs md:text-sm mb-3">Technologies I work with</p>
           <div className="flex flex-wrap justify-center gap-2">
             {['TypeScript', 'Git', 'VS Code', 'Linux'].map((tech) => (
               <span 
                 key={tech}
-                className="bg-card border border-card-border text-foreground/80 px-4 py-2 rounded-lg text-sm hover:bg-card-hover transition-colors duration-300"
+                className="bg-card border border-card-border text-foreground/80 px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs md:text-sm hover:bg-card-hover transition-colors duration-300"
               >
                 {tech}
               </span>

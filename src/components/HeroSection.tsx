@@ -15,13 +15,13 @@ const HeroSection = () => {
         <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent/8 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 py-12 md:py-20 relative z-20">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           
           {/* Left Content */}
-          <div className="space-y-8 text-center lg:text-left">
+          <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             {/* Elegant Profile Image */}
-            <div className="relative mx-auto lg:mx-0 w-56 h-56 group">
+            <div className="relative mx-auto lg:mx-0 w-40 h-40 md:w-56 md:h-56 group">
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-all duration-500" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-card-border shadow-card group-hover:shadow-float transition-all duration-500 transform group-hover:scale-105">
                 <img 
@@ -34,28 +34,28 @@ const HeroSection = () => {
             </div>
 
             {/* Text Content */}
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h1 className="text-5xl lg:text-6xl font-bold tracking-tight">
-                  <span className="block text-foreground/80 text-2xl font-normal mb-2">Hi, I'm</span>
+            <div className="space-y-4 md:space-y-6">
+              <div className="space-y-3 md:space-y-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                  <span className="block text-foreground/80 text-xl md:text-2xl font-normal mb-2">Hi, I'm</span>
                   <span className="block bg-gradient-primary bg-clip-text text-transparent">
                     Sajal
                   </span>
                 </h1>
-                <p className="text-xl text-muted-foreground font-light">
+                <p className="text-lg md:text-xl text-muted-foreground font-light">
                   Passionate Developer & CS Student at Bennett University
                 </p>
               </div>
 
-              <p className="text-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-sm md:text-base text-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
                 I love creating innovative solutions and learning new technologies. My journey in computer science is driven by curiosity and the desire to build meaningful applications that solve real-world problems.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-primary hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="bg-gradient-primary hover:shadow-glow transition-all duration-300 transform hover:-translate-y-0.5 text-sm md:text-base"
                   onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   View My Work
@@ -65,7 +65,7 @@ const HeroSection = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-border hover:bg-card-hover hover:border-primary/30 transition-all duration-300"
+                  className="border-border hover:bg-card-hover hover:border-primary/30 transition-all duration-300 text-sm md:text-base"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Contact Me
@@ -74,28 +74,28 @@ const HeroSection = () => {
               </div>
 
               {/* Social Links */}
-              <div className="flex gap-3 justify-center lg:justify-start">
+              <div className="flex gap-2 md:gap-3 justify-center lg:justify-start">
                 <a 
                   href="https://github.com/ydvSajal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
                 >
-                  <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Github className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/sajal-yadav-6a0b5930a"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
                 >
-                  <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <Linkedin className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-accent transition-colors" />
                 </a>
                 <a 
                   href="mailto:sajalkumar1765@gmail.com"
-                  className="p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
                 >
-                  <Mail className="h-5 w-5 text-muted-foreground group-hover:text-success transition-colors" />
+                  <Mail className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-success transition-colors" />
                 </a>
               </div>
             </div>
