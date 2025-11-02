@@ -232,6 +232,82 @@ All colors MUST be HSL for perfect theming.
   .animate-rotate-3d {
     animation: rotate-3d 20s linear infinite;
   }
+  
+  /* Fade In Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes expand {
+    from {
+      width: 0;
+    }
+    to {
+      width: 5rem;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+    }
+  }
+
+  @keyframes floatDelay {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(20px) translateX(-10px);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-expand {
+    animation: expand 0.8s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delay {
+    animation: floatDelay 8s ease-in-out infinite;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
 }
 
 @layer base {
