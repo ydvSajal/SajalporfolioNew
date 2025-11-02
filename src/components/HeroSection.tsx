@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import profileImage from '@/assets/profile-new.jpg';
 import Scene3D from './Scene3D';
+import { TypingAnimation } from './TypingAnimation';
 
 const HeroSection = () => {
   return (
@@ -42,9 +43,17 @@ const HeroSection = () => {
                     Sajal
                   </span>
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground font-light">
-                  Passionate Developer & CS Student at Bennett University
-                </p>
+                <div className="text-lg md:text-xl text-muted-foreground font-light min-h-[2em]">
+                  <TypingAnimation 
+                    texts={[
+                      "Full Stack Developer 💻",
+                      "Problem Solver 🧩",
+                      "CS Student at Bennett University 🎓",
+                      "Tech Enthusiast 🚀"
+                    ]}
+                    speed={100}
+                  />
+                </div>
               </div>
 
               <p className="text-sm md:text-base text-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">

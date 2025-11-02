@@ -2,6 +2,7 @@ import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProjectsScene3D from './ProjectsScene3D';
 import { useEffect, useRef } from 'react';
+import { GitHubStats } from './GitHubStats';
 
 const ProjectsSection = () => {
   const projectsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -204,6 +205,11 @@ const ProjectsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* GitHub Stats Section */}
+        <div className="mt-12 md:mt-16">
+          <GitHubStats username="ydvSajal" />
         </div>
 
         {/* Enhanced Call to Action */}

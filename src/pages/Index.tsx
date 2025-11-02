@@ -8,8 +8,9 @@ import EducationSection from '@/components/EducationSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { LoadingBar } from '@/components/LoadingBar';
+import { FloatingActionButton } from '@/components/FloatingActionButton';
+import { BackToTop } from '@/components/BackToTop';
 
 const Index = () => {
   useEffect(() => {
@@ -41,7 +42,8 @@ const Index = () => {
       <ProjectsSection />
       <ContactSection />
       <Footer />
-      <ThemeToggle />
+      <FloatingActionButton />
+      <BackToTop />
     </div>
   );
 };
