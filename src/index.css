@@ -8,67 +8,67 @@ All colors MUST be HSL for perfect theming.
 
 @layer base {
   :root {
-    /* Refined Background System - Subtle Navy */
-    --background: 220 18% 8%;
-    --background-secondary: 220 16% 11%;
-    --background-tertiary: 220 14% 14%;
-    --foreground: 220 8% 92%;
+    /* Enhanced Background System - Richer Depth */
+    --background: 220 25% 12%;
+    --background-secondary: 220 23% 15%;
+    --background-tertiary: 220 21% 18%;
+    --foreground: 0 0% 98%;
 
-    /* Card System - Clean & Minimal */
-    --card: 220 16% 12%;
-    --card-hover: 220 14% 15%;
-    --card-foreground: 220 8% 90%;
-    --card-border: 220 12% 20%;
+    /* Card System - More Visible & Attractive */
+    --card: 220 22% 18%;
+    --card-hover: 220 20% 22%;
+    --card-foreground: 0 0% 96%;
+    --card-border: 220 30% 35%;
 
     /* Popover System */
-    --popover: 220 16% 12%;
-    --popover-foreground: 220 8% 90%;
+    --popover: 220 22% 18%;
+    --popover-foreground: 0 0% 96%;
 
-    /* Primary - Elegant Blue */
-    --primary: 210 75% 60%;
-    --primary-dark: 210 70% 50%;
-    --primary-light: 210 80% 70%;
+    /* Primary - Vibrant Electric Blue */
+    --primary: 210 90% 62%;
+    --primary-dark: 210 85% 52%;
+    --primary-light: 210 95% 72%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary System */
-    --secondary: 220 14% 18%;
-    --secondary-foreground: 220 8% 85%;
-    --secondary-glow: 220 18% 28%;
+    --secondary: 220 18% 24%;
+    --secondary-foreground: 0 0% 92%;
+    --secondary-glow: 220 25% 38%;
 
     /* Muted System */
-    --muted: 220 12% 20%;
-    --muted-foreground: 220 6% 60%;
+    --muted: 220 16% 28%;
+    --muted-foreground: 220 8% 72%;
 
-    /* Accent - Sophisticated Teal */
-    --accent: 180 60% 55%;
-    --accent-dark: 180 55% 45%;
+    /* Accent - Vivid Cyan/Teal */
+    --accent: 185 75% 58%;
+    --accent-dark: 185 70% 48%;
     --accent-foreground: 0 0% 100%;
 
-    /* Status Colors */
-    --destructive: 0 70% 55%;
+    /* Status Colors - More Vibrant */
+    --destructive: 0 80% 60%;
     --destructive-foreground: 0 0% 100%;
-    --success: 140 50% 50%;
-    --warning: 35 85% 60%;
+    --success: 145 65% 55%;
+    --warning: 40 98% 68%;
 
-    /* Interactive Elements */
-    --border: 220 12% 22%;
-    --input: 220 14% 16%;
-    --ring: 210 75% 60%;
+    /* Interactive Elements - Brighter */
+    --border: 220 25% 35%;
+    --input: 220 20% 20%;
+    --ring: 210 90% 62%;
 
-    /* Subtle Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 75% 60%) 0%, hsl(210 80% 70%) 100%);
-    --gradient-secondary: linear-gradient(135deg, hsl(220 14% 18%) 0%, hsl(220 16% 22%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(210 75% 60%) 0%, hsl(180 60% 55%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 16% 12%) 0%, hsl(220 14% 15%) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(210 75% 60% / 0.15) 0%, transparent 70%);
+    /* Stunning Enhanced Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 90% 62%) 0%, hsl(185 75% 58%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(220 18% 24%) 0%, hsl(220 22% 28%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(210 90% 62%) 0%, hsl(270 85% 65%) 50%, hsl(185 75% 58%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 22% 18%) 0%, hsl(220 20% 22%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(210 90% 62% / 0.25) 0%, hsl(185 75% 58% / 0.15) 50%, transparent 70%);
 
-    /* Refined Shadows */
-    --shadow-sm: 0 1px 3px hsl(220 25% 5% / 0.2);
-    --shadow-md: 0 4px 12px hsl(220 25% 5% / 0.25);
-    --shadow-lg: 0 8px 24px hsl(220 25% 5% / 0.3);
-    --shadow-glow: 0 0 24px hsl(210 75% 60% / 0.2);
-    --shadow-card: 0 4px 16px hsl(220 25% 5% / 0.3), 0 1px 4px hsl(220 25% 5% / 0.2);
-    --shadow-float: 0 12px 32px hsl(220 25% 5% / 0.35), 0 4px 12px hsl(220 25% 5% / 0.25);
+    /* Enhanced Glowing Shadows */
+    --shadow-sm: 0 2px 4px hsl(220 30% 5% / 0.25);
+    --shadow-md: 0 6px 16px hsl(220 30% 5% / 0.3);
+    --shadow-lg: 0 10px 30px hsl(220 30% 5% / 0.35);
+    --shadow-glow: 0 0 30px hsl(210 90% 62% / 0.3), 0 0 60px hsl(185 75% 58% / 0.15);
+    --shadow-card: 0 6px 20px hsl(220 30% 5% / 0.35), 0 0 40px hsl(210 90% 62% / 0.1);
+    --shadow-float: 0 16px 40px hsl(220 30% 5% / 0.4), 0 0 60px hsl(210 90% 62% / 0.15);
 
     /* Refined Transitions */
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -318,8 +318,10 @@ All colors MUST be HSL for perfect theming.
   body {
     @apply bg-background text-foreground font-sans antialiased;
     background-image: 
-      radial-gradient(circle at 20% 80%, hsl(210 75% 60% / 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(180 60% 55% / 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, hsl(210 90% 62% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(185 75% 58% / 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 0%, hsl(270 85% 65% / 0.06) 0%, transparent 40%);
+    background-attachment: fixed;
   }
   
   /* Smooth scrolling */
@@ -337,12 +339,12 @@ All colors MUST be HSL for perfect theming.
   }
   
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
+    background: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary-dark));
+    background: linear-gradient(180deg, hsl(var(--primary-light)) 0%, hsl(var(--accent)) 100%);
   }
   
   /* Custom shimmer animation */
@@ -351,8 +353,26 @@ All colors MUST be HSL for perfect theming.
     100% { transform: translateX(100%); }
   }
   
+  /* Pulsing glow animation */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(210 90% 62% / 0.3), 0 0 40px hsl(185 75% 58% / 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 30px hsl(210 90% 62% / 0.5), 0 0 60px hsl(185 75% 58% / 0.2);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
   /* Text shadow utility */
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px hsl(210 90% 62% / 0.5), 0 0 40px hsl(185 75% 58% / 0.3);
   }
 }
