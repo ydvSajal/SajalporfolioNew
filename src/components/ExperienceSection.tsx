@@ -6,7 +6,7 @@ const ExperienceSection = () => {
       company: 'Singari Investments',
       role: 'Web Developer',
       period: 'Sep 2025 - Nov 2025',
-      duration: '2 months',
+      duration: '3 months',
       location: 'Remote',
       status: 'Completed',
       description: 'Worked as a web developer contributing to the development and enhancement of the company\'s web applications. Collaborated with the team to implement new features and improve user experience.',
