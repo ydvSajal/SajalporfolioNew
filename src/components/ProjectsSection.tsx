@@ -99,8 +99,8 @@ const ProjectsSection = () => {
       description: 'Personal portfolio showcasing projects and skills.',
       fullDescription: 'Modern, responsive portfolio built with React and TypeScript featuring 3D animations and smooth interactions.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Vite'],
-      liveUrl: 'https://sajal-portfolio.vercel.app/',
-      githubUrl: 'https://github.com/ydvSajal/SajalporfolioNew',
+      liveUrl: 'https://ydvsajal.vercel.app/',
+      githubUrl: '',
       color: 'from-violet-500 to-purple-600',
       icon: '💼'
     }
