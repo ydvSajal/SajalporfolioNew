@@ -48,6 +48,15 @@ const ProjectsSection = () => {
       icon: '🛒'
     },
     {
+      title: 'PublishSky',
+      description: 'Ship pages to the web instantly with polished defaults.',
+      fullDescription: 'Intelligent link management for the modern web. Route, track, and optimize with ease..',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+      liveUrl: 'https://publishsky.vercel.app/',
+      color: 'from-cyan-500 to-blue-600',
+      icon: '☁️'
+    },
+    {
       title: 'Urban Reach',
       description: 'A modern web application focused on urban connectivity.',
       fullDescription: 'Community engagement and digital solutions for city dwellers.',
