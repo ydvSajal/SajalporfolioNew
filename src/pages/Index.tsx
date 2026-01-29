@@ -11,6 +11,9 @@ import Footer from '@/components/Footer';
 import { LoadingBar } from '@/components/LoadingBar';
 import { FloatingActionButton } from '@/components/FloatingActionButton';
 import { BackToTop } from '@/components/BackToTop';
+import RetroBackground from '@/components/RetroBackground';
+import RetroScanlines from '@/components/RetroScanlines';
+import RetroPixelCursor from '@/components/RetroPixelCursor';
 
 const Index = () => {
   useEffect(() => {
@@ -31,9 +34,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <LoadingBar />
-      <Navigation />
+    <div className="min-h-screen bg-background relative">
+      <RetroBackground />
+      <RetroScanlines />
+      <RetroPixelCursor />
+      <div className="relative z-10">
+        <LoadingBar />
+        <Navigation />
       <HeroSection />
       <AboutSection />
       <SkillsSection />
@@ -44,6 +51,7 @@ const Index = () => {
       <Footer />
       <FloatingActionButton />
       <BackToTop />
+      </div>
     </div>
   );
 };

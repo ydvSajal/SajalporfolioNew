@@ -28,14 +28,14 @@ export const BackToTop = () => {
     <Button
       size="icon"
       onClick={scrollToTop}
-      className={`fixed bottom-6 right-20 z-50 w-12 h-12 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl ${
+      className={`fixed bottom-6 right-20 z-50 w-12 h-12 border-4 border-border transition-all retro-shadow hover:retro-shadow-lg ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
       }`}
       style={{
         background: `conic-gradient(hsl(var(--primary)) ${scrollProgress}%, hsl(var(--card)) ${scrollProgress}%)`,
       }}
     >
-      <div className="absolute inset-1 bg-background rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+      <div className="absolute inset-1 bg-background border-2 border-border flex items-center justify-center hover:scale-110 transition-transform">
         <ArrowUp className="h-5 w-5 text-primary" />
       </div>
     </Button>

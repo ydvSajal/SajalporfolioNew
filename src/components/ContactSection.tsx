@@ -19,28 +19,32 @@ const ContactSection = () => {
       title: 'Email',
       value: 'sajalkumar1765@gmail.com',
       href: 'mailto:sajalkumar1765@gmail.com',
-      color: 'text-primary'
+      color: 'text-primary-foreground',
+      bgColor: 'bg-primary'
     },
     {
       icon: Github,
       title: 'GitHub',
       value: 'github.com/ydvSajal',
       href: 'https://github.com/ydvSajal',
-      color: 'text-foreground'
+      color: 'text-foreground',
+      bgColor: 'bg-card'
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
       value: 'linkedin.com/in/sajal-yadav',
       href: 'https://www.linkedin.com/in/sajal-yadav-6a0b5930a',
-      color: 'text-accent'
+      color: 'text-accent-foreground',
+      bgColor: 'bg-accent'
     },
     {
       icon: MapPin,
       title: 'Location',
       value: 'Bennett University, India',
       href: '#',
-      color: 'text-success'
+      color: 'text-secondary-foreground',
+      bgColor: 'bg-secondary'
     }
   ];
 
@@ -75,22 +79,23 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-12 md:py-20 bg-background relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
+      {/* Retro Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-20 w-36 h-36 border-2 border-primary/20 rotate-12" />
+        <div className="absolute bottom-20 right-20 w-40 h-40 border-2 border-accent/20" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Get In Touch
-            </span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto mb-4 md:mb-6 rounded-full" />
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-lg">
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-primary translate-x-1 translate-y-1" />
+            <h2 className="relative text-3xl md:text-4xl font-heading bg-card text-foreground px-6 py-3 retro-border retro-shadow-lg">
+              📧 Get In Touch
+            </h2>
+          </div>
+          <div className="w-32 h-2 bg-primary mx-auto my-6 retro-border" />
+          <p className="text-foreground/80 max-w-2xl mx-auto text-sm md:text-base">
             Have a question or want to work together? Feel free to reach out!
           </p>
         </div>
@@ -99,29 +104,28 @@ const ContactSection = () => {
           {/* Contact Information */}
           <div className="space-y-6 md:space-y-8">
             <div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-5 md:mb-6">
-                Contact Information
+              <h3 className="text-xl md:text-2xl font-heading text-foreground mb-5 md:mb-6">
+                📋 CONTACT INFO
               </h3>
               
               <div className="space-y-3 md:space-y-4">
-                {contactInfo.map((info, index) => (
+                {contactInfo.map((info) => (
                   <a
                     key={info.title}
                     href={info.href}
                     target={info.href.startsWith('http') ? '_blank' : undefined}
                     rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg md:rounded-xl bg-gradient-card border border-card-border hover:bg-card-hover transition-all duration-300 hover:shadow-glow"
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                    className={`group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 ${info.bgColor} border-4 border-border retro-shadow hover:retro-shadow-lg transition-all`}
                   >
-                    <div className="p-2 md:p-3 rounded-lg md:rounded-xl bg-gradient-to-br from-card-hover to-card border border-card-border group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      <info.icon className={`h-4 w-4 md:h-5 md:w-5 ${info.color}`} />
+                    <div className="p-2 md:p-3 border-2 border-border bg-card group-hover:scale-110 transition-transform flex-shrink-0">
+                      <info.icon className={`h-4 w-4 md:h-5 md:w-5 text-foreground`} />
                     </div>
                     
                     <div className="min-w-0">
-                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300 text-sm md:text-base">
+                      <h4 className={`font-heading ${info.color} text-sm md:text-base`}>
                         {info.title}
                       </h4>
-                      <p className="text-muted-foreground text-xs md:text-sm truncate">
+                      <p className={`text-xs md:text-sm truncate font-bold ${info.color}/80`}>
                         {info.value}
                       </p>
                     </div>
@@ -132,25 +136,25 @@ const ContactSection = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-base md:text-lg font-semibold text-foreground mb-3 md:mb-4">
-                Connect with me
+              <h4 className="text-base md:text-lg font-heading text-foreground mb-3 md:mb-4">
+                🔗 CONNECT WITH ME
               </h4>
               <div className="flex gap-3 md:gap-4">
                 <a
                   href="https://github.com/ydvSajal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 md:p-4 rounded-lg md:rounded-xl bg-gradient-card border border-card-border hover:bg-card-hover transition-all duration-300 hover:shadow-glow group"
+                  className="p-3 md:p-4 bg-card border-4 border-border retro-shadow hover:retro-shadow-lg transition-all group"
                 >
-                  <Github className="h-5 w-5 md:h-6 md:w-6 text-foreground/70 group-hover:text-foreground transition-colors" />
+                  <Github className="h-5 w-5 md:h-6 md:w-6 text-foreground group-hover:scale-110 transition-transform" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/sajal-yadav-6a0b5930a"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 md:p-4 rounded-lg md:rounded-xl bg-gradient-card border border-card-border hover:bg-card-hover transition-all duration-300 hover:shadow-glow group"
+                  className="p-3 md:p-4 bg-accent border-4 border-border retro-shadow hover:retro-shadow-lg transition-all group"
                 >
-                  <Linkedin className="h-5 w-5 md:h-6 md:w-6 text-foreground/70 group-hover:text-accent transition-colors" />
+                  <Linkedin className="h-5 w-5 md:h-6 md:w-6 text-accent-foreground group-hover:scale-110 transition-transform" />
                 </a>
               </div>
             </div>
@@ -158,15 +162,15 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div className="relative">
-            <div className="bg-gradient-card border border-card-border rounded-xl md:rounded-2xl p-6 md:p-8 shadow-3d-lg backdrop-blur-xl">
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-5 md:mb-6 text-center">
-                Send a Message
+            <div className="bg-card border-4 border-border p-6 md:p-8 retro-shadow-lg">
+              <h3 className="text-xl md:text-2xl font-heading text-foreground mb-5 md:mb-6 text-center">
+                💌 SEND MESSAGE
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-xs md:text-sm font-medium text-foreground mb-1.5 md:mb-2">
-                    Name
+                  <label htmlFor="name" className="block text-xs md:text-sm font-bold text-foreground mb-2">
+                    NAME
                   </label>
                   <Input
                     id="name"
@@ -175,13 +179,13 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your Name"
-                    className="bg-card/50 border-card-border focus:border-primary transition-colors duration-300 text-sm md:text-base h-9 md:h-10"
+                    className="bg-background border-2 border-border focus:border-primary transition-colors text-sm md:text-base h-10 md:h-12"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-xs md:text-sm font-medium text-foreground mb-1.5 md:mb-2">
-                    Email
+                  <label htmlFor="email" className="block text-xs md:text-sm font-bold text-foreground mb-2">
+                    EMAIL
                   </label>
                   <Input
                     id="email"
@@ -189,39 +193,35 @@ const ContactSection = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="Your Email"
-                    className="bg-card/50 border-card-border focus:border-primary transition-colors duration-300 text-sm md:text-base h-9 md:h-10"
+                    placeholder="your.email@example.com"
+                    className="bg-background border-2 border-border focus:border-primary transition-colors text-sm md:text-base h-10 md:h-12"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-xs md:text-sm font-medium text-foreground mb-1.5 md:mb-2">
-                    Message
+                  <label htmlFor="message" className="block text-xs md:text-sm font-bold text-foreground mb-2">
+                    MESSAGE
                   </label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Your Message"
-                    rows={4}
-                    className="bg-card/50 border-card-border focus:border-primary transition-colors duration-300 resize-none text-sm md:text-base"
+                    placeholder="Your message here..."
+                    rows={5}
+                    className="bg-background border-2 border-border focus:border-primary transition-colors resize-none text-sm md:text-base"
                   />
                 </div>
                 
                 <Button 
                   type="submit"
-                  className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300 transform hover:scale-105 text-sm md:text-base h-9 md:h-10"
+                  className="w-full bg-primary text-primary-foreground border-2 border-border retro-shadow hover:retro-shadow-lg transition-all font-bold text-sm md:text-base h-10 md:h-12"
                 >
-                  <Send className="h-3.5 w-3.5 md:h-4 md:w-4 mr-2" />
-                  Send Message
+                  <Send className="h-4 w-4 mr-2" />
+                  SEND MESSAGE
                 </Button>
               </form>
             </div>
-
-            {/* Floating Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-6 h-6 md:w-8 md:h-8 bg-gradient-primary rounded-full opacity-80 animate-bounce hidden sm:block" style={{ animationDelay: '0.5s' }} />
-            <div className="absolute -bottom-4 -left-4 w-5 h-5 md:w-6 md:h-6 bg-accent rounded-full opacity-80 animate-bounce hidden sm:block" style={{ animationDelay: '1.5s' }} />
           </div>
         </div>
       </div>

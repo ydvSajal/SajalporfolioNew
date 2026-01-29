@@ -29,79 +29,84 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-12 md:py-20 bg-background-secondary relative overflow-hidden">
-      {/* Subtle Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-16 left-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-16 right-16 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+    <section id="about" className="py-12 md:py-20 bg-background relative overflow-hidden">
+      {/* Retro Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-20 w-32 h-32 border-2 border-primary/20" />
+        <div className="absolute bottom-20 left-20 w-24 h-24 border-2 border-accent/20 rotate-45" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              About Me
-            </span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto mb-6 rounded-full" />
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-primary translate-x-1 translate-y-1" />
+            <h2 className="relative text-3xl md:text-4xl font-heading bg-card text-foreground px-6 py-3 retro-border retro-shadow-lg">
+              👤 About Me
+            </h2>
+          </div>
+          <div className="w-32 h-2 bg-primary mx-auto my-6 retro-border" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Left Content */}
-          <div className="space-y-5 md:space-y-6">
-            <div className="space-y-4">
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                Who I Am
+          <div className="space-y-6">
+            <div className="bg-card border-4 border-border p-6 md:p-8 retro-shadow-lg">
+              <h3 className="text-xl md:text-2xl font-heading text-foreground mb-4 flex items-center gap-2">
+                <span className="text-2xl">💡</span> Who I Am
               </h3>
               
-              <div className="space-y-3 md:space-y-4 text-sm md:text-base text-foreground/80 leading-relaxed">
-                <p>
+              <div className="space-y-4 text-sm md:text-base text-foreground leading-relaxed">
+                <p className="border-l-4 border-primary pl-4">
                   I'm a passionate Computer Science student at Bennett University with a strong interest in software development, web technologies, and creating solutions that make an impact.
                 </p>
                 
-                <p>
-                  My journey in technology began with curiosity about how things work, which evolved into building applications that solve real problems. I enjoy the process of turning ideas into functional products.
+                <p className="border-l-4 border-accent pl-4">
+                  My journey in technology began with curiosity about how things work, which evolved into building applications that solve real problems.
                 </p>
                 
-                <p>
-                  When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or working on personal projects that challenge my skills.
+                <p className="border-l-4 border-secondary pl-4">
+                  When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or working on personal projects.
                 </p>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
-              <div className="bg-gradient-card border border-card-border rounded-lg p-4 md:p-5 text-center shadow-card hover:shadow-float transition-all duration-300">
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">6+</div>
-                <div className="text-xs md:text-sm text-muted-foreground">Projects</div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-primary border-4 border-border p-5 text-center retro-shadow-lg hover:retro-shadow-xl transition-all">
+                <div className="text-3xl md:text-4xl font-heading text-primary-foreground mb-1">6+</div>
+                <div className="text-sm font-bold text-primary-foreground">Projects</div>
               </div>
-              <div className="bg-gradient-card border border-card-border rounded-lg p-4 md:p-5 text-center shadow-card hover:shadow-float transition-all duration-300">
-                <div className="text-2xl md:text-3xl font-bold text-accent mb-1">3+</div>
-                <div className="text-xs md:text-sm text-muted-foreground">Years</div>
+              <div className="bg-accent border-4 border-border p-5 text-center retro-shadow-lg hover:retro-shadow-xl transition-all">
+                <div className="text-3xl md:text-4xl font-heading text-accent-foreground mb-1">3+</div>
+                <div className="text-sm font-bold text-accent-foreground">Years</div>
               </div>
             </div>
           </div>
 
           {/* Right Content - Personal Information */}
-          <div className="bg-gradient-card border border-card-border rounded-xl p-6 md:p-8 shadow-card hover:shadow-float transition-all duration-300">
-            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-5 md:mb-6">Personal Info</h3>
+          <div className="bg-card border-4 border-border p-6 md:p-8 retro-shadow-lg">
+            <h3 className="text-xl md:text-2xl font-heading text-foreground mb-6 flex items-center gap-2">
+              <span className="text-2xl">📋</span> Personal Info
+            </h3>
             
-            <div className="space-y-4 md:space-y-5">
-              {personalInfo.map((info) => (
+            <div className="space-y-4">
+              {personalInfo.map((info, idx) => (
                 <div 
                   key={info.label}
-                  className="group flex items-start space-x-3 md:space-x-4 p-3 md:p-4 rounded-lg bg-card/30 border border-card-border/50 hover:bg-card-hover/50 transition-all duration-300"
+                  className={`flex items-start gap-3 p-4 border-2 border-border retro-shadow hover:retro-shadow-md transition-all ${ 
+                    idx % 2 === 0 ? 'bg-card' : 'bg-accent/10'
+                  }`}
                 >
-                  <div className="p-2 md:p-2.5 rounded-lg bg-card-hover border border-card-border flex-shrink-0">
-                    <info.icon className={`h-4 w-4 md:h-5 md:w-5 ${info.color}`} />
+                  <div className={`p-2 border-2 border-border ${info.color} bg-primary/10`}>
+                    <info.icon className="h-5 w-5" />
                   </div>
                   
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-foreground/90 mb-0.5 text-xs md:text-sm">
+                    <h4 className="font-bold text-foreground text-sm">
                       {info.label}
                     </h4>
-                    <p className="text-muted-foreground text-xs md:text-sm break-words">
+                    <p className="text-foreground/80 text-xs md:text-sm break-words">
                       {info.value}
                     </p>
                   </div>
@@ -110,11 +115,11 @@ const AboutSection = () => {
             </div>
 
             {/* Current Focus */}
-            <div className="mt-6 md:mt-8 pt-5 md:pt-6 border-t border-card-border/50">
-              <h4 className="font-medium text-foreground/90 mb-3 text-xs md:text-sm">Current Focus</h4>
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-                <span className="text-xs md:text-sm text-primary/90">
+            <div className="mt-8 pt-6 border-t-4 border-primary">
+              <h4 className="font-bold text-foreground mb-3 text-sm">🎯 Current Focus</h4>
+              <div className="inline-flex items-center gap-2 bg-primary border-2 border-border px-4 py-2 retro-shadow">
+                <div className="w-2 h-2 bg-primary-foreground animate-pulse" />
+                <span className="text-sm font-bold text-primary-foreground">
                   Full-Stack Development
                 </span>
               </div>

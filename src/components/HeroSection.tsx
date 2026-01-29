@@ -1,19 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import profileImage from '@/assets/profile-new.jpg';
-import Scene3D from './Scene3D';
 import { TypingAnimation } from './TypingAnimation';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden perspective-1000">
-      {/* 3D Background Scene */}
-      <Scene3D />
-      
-      {/* Subtle Background Elements */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/8 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent/8 rounded-full blur-3xl" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Retro Decorative Elements */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="absolute top-20 left-20 w-32 h-32 border-4 border-primary retro-shadow-lg" />
+        <div className="absolute bottom-20 right-20 w-40 h-40 rounded-full border-4 border-accent retro-shadow-lg" />
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 rotate-45 border-4 border-primary/40 retro-shadow" />
+        <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-accent/10 border-2 border-accent" />
+        <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-primary/10 border-2 border-primary rotate-12" />
       </div>
 
       <div className="container mx-auto px-4 py-12 md:py-20 relative z-20">
@@ -23,8 +22,8 @@ const HeroSection = () => {
           <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             {/* Elegant Profile Image */}
             <div className="relative mx-auto lg:mx-0 w-40 h-40 md:w-56 md:h-56 group">
-              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-all duration-500" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-card-border shadow-card group-hover:shadow-float transition-all duration-500 transform group-hover:scale-105">
+              <div className="absolute -inset-2 bg-primary/20 retro-border retro-shadow-lg" />
+              <div className="relative w-full h-full overflow-hidden border-4 border-border retro-shadow-xl group-hover:retro-shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
                 <img 
                   src={profileImage} 
                   alt="Sajal's Profile" 
@@ -37,13 +36,14 @@ const HeroSection = () => {
             {/* Text Content */}
             <div className="space-y-4 md:space-y-6">
               <div className="space-y-3 md:space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  <span className="block text-foreground/80 text-xl md:text-2xl font-normal mb-2">Hi, I'm</span>
-                  <span className="block bg-gradient-primary bg-clip-text text-transparent">
+                <div className="inline-block relative">
+                  <div className="absolute inset-0 bg-primary translate-x-1 translate-y-1" />
+                  <h1 className="relative text-4xl md:text-6xl lg:text-7xl font-heading bg-card text-foreground px-4 md:px-6 py-2 md:py-3 retro-border retro-shadow-xl">
+                    <span className="block text-sm md:text-lg font-sans mb-1">👋 Hi, I'm</span>
                     Sajal
-                  </span>
-                </h1>
-                <div className="text-lg md:text-xl text-muted-foreground font-light min-h-[2em]">
+                  </h1>
+                </div>
+                <div className="text-base md:text-xl text-foreground font-medium min-h-[2em] bg-accent/20 border-2 border-border px-4 py-2 retro-shadow inline-block">
                   <TypingAnimation 
                     texts={[
                       "Full Stack Developer 💻",
@@ -56,7 +56,7 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <p className="text-sm md:text-base text-foreground/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-sm md:text-base text-foreground bg-card max-w-lg mx-auto lg:mx-0 leading-relaxed border-l-4 border-primary pl-4 py-3 retro-shadow">
                 I love creating innovative solutions and learning new technologies. My journey in computer science is driven by curiosity and the desire to build meaningful applications that solve real-world problems.
               </p>
 
@@ -88,23 +88,23 @@ const HeroSection = () => {
                   href="https://github.com/ydvSajal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-3 md:p-4 bg-card hover:bg-primary border-2 border-border retro-shadow hover:retro-shadow-lg transition-all duration-300 group"
                 >
-                  <Github className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <Github className="h-5 w-5 md:h-6 md:w-6 text-foreground group-hover:text-primary-foreground transition-colors" />
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/sajal-yadav-6a0b5930a"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-3 md:p-4 bg-card hover:bg-accent border-2 border-border retro-shadow hover:retro-shadow-lg transition-all duration-300 group"
                 >
-                  <Linkedin className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <Linkedin className="h-5 w-5 md:h-6 md:w-6 text-foreground group-hover:text-accent-foreground transition-colors" />
                 </a>
                 <a 
                   href="mailto:sajalkumar1765@gmail.com"
-                  className="p-2.5 md:p-3 rounded-lg bg-card hover:bg-card-hover border border-card-border transition-all duration-300 group"
+                  className="p-3 md:p-4 bg-card hover:bg-secondary border-2 border-border retro-shadow hover:retro-shadow-lg transition-all duration-300 group"
                 >
-                  <Mail className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-success transition-colors" />
+                  <Mail className="h-5 w-5 md:h-6 md:w-6 text-foreground group-hover:text-secondary-foreground transition-colors" />
                 </a>
               </div>
             </div>
@@ -112,52 +112,55 @@ const HeroSection = () => {
 
           {/* Elegant Code Terminal */}
           <div className="relative hidden lg:block">
-            <div className="bg-gradient-card border border-card-border rounded-xl p-8 shadow-card hover:shadow-float transition-all duration-500 group">
+            <div className="bg-card border-4 border-border p-6 md:p-8 retro-shadow-xl hover:retro-shadow-2xl transition-all duration-300 group relative">
+              {/* Colorful corner accent */}
+              <div className="absolute top-0 left-0 w-16 h-16 bg-accent/30 -translate-y-8 -translate-x-8 rotate-45" />
+              
               {/* Terminal Header */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-3 h-3 rounded-full bg-destructive/80"></div>
-                <div className="w-3 h-3 rounded-full bg-warning/80"></div>
-                <div className="w-3 h-3 rounded-full bg-success/80"></div>
-                <span className="ml-4 text-sm text-muted-foreground">skills.tsx</span>
+              <div className="flex items-center gap-2 mb-6 border-b-2 border-border pb-3">
+                <div className="w-4 h-4 bg-destructive border-2 border-border retro-shadow"></div>
+                <div className="w-4 h-4 bg-primary border-2 border-border retro-shadow"></div>
+                <div className="w-4 h-4 bg-accent border-2 border-border retro-shadow"></div>
+                <span className="ml-4 text-sm font-bold text-foreground bg-primary/20 px-2 py-1 border border-border">skills.tsx</span>
               </div>
 
               {/* Terminal Content */}
               <div className="space-y-4 font-mono text-sm">
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">$</span>
-                  <span className="text-foreground">sajal --skills</span>
+                <div className="flex items-center bg-accent/10 border-l-4 border-accent px-3 py-2">
+                  <span className="text-accent-foreground font-bold mr-2">$</span>
+                  <span className="text-foreground font-bold">sajal --skills</span>
                 </div>
                 
-                <div className="space-y-2 ml-4 text-muted-foreground">
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">Python - Advanced</span>
+                <div className="space-y-2 ml-4 text-foreground">
+                  <div className="flex items-center hover:bg-primary/10 px-2 py-1 transition-colors">
+                    <span className="text-primary text-xl">●</span>
+                    <span className="ml-2 font-medium">Python - Advanced</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">JavaScript - Intermediate</span>
+                  <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
+                    <span className="text-accent text-xl">●</span>
+                    <span className="ml-2 font-medium">JavaScript - Intermediate</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">React - Intermediate</span>
+                  <div className="flex items-center hover:bg-primary/10 px-2 py-1 transition-colors">
+                    <span className="text-primary text-xl">●</span>
+                    <span className="ml-2 font-medium">React - Intermediate</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">Java - Intermediate</span>
+                  <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
+                    <span className="text-accent text-xl">●</span>
+                    <span className="ml-2 font-medium">Java - Intermediate</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">SQL - Intermediate</span>
+                  <div className="flex items-center hover:bg-primary/10 px-2 py-1 transition-colors">
+                    <span className="text-primary text-xl">●</span>
+                    <span className="ml-2 font-medium">SQL - Intermediate</span>
                   </div>
-                  <div className="flex items-center">
-                    <span className="text-primary">●</span>
-                    <span className="ml-2">HTML/CSS - Advanced</span>
+                  <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
+                    <span className="text-accent text-xl">●</span>
+                    <span className="ml-2 font-medium">HTML/CSS - Advanced</span>
                   </div>
                 </div>
 
-                <div className="flex items-center mt-6">
-                  <span className="text-accent mr-2">$</span>
-                  <span className="text-primary animate-pulse">|</span>
+                <div className="flex items-center mt-6 bg-secondary/20 border-l-4 border-secondary px-3 py-2">
+                  <span className="text-secondary-foreground font-bold mr-2">$</span>
+                  <span className="text-primary font-bold animate-pulse">|</span>
                 </div>
               </div>
             </div>

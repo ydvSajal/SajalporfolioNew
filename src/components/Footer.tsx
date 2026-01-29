@@ -3,102 +3,82 @@ import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const socialLinks = [
+    { href: 'https://github.com/ydvSajal', icon: Github, label: 'GitHub', hoverColor: 'hover:bg-primary' },
+    { href: 'https://www.linkedin.com/in/sajal-yadav-6a0b5930a', icon: Linkedin, label: 'LinkedIn', hoverColor: 'hover:bg-accent' },
+    { href: 'mailto:sajalkumar1765@gmail.com', icon: Mail, label: 'Email', hoverColor: 'hover:bg-secondary' },
+  ];
+
+  const quickLinks = [
+    { href: '#about', label: 'About' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#education', label: 'Education' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
+  ];
+
   return (
-    <footer className="bg-background-tertiary border-t border-card-border relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+    <footer className="bg-card border-t-4 border-border relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-10 w-24 h-24 border-2 border-primary/20 rotate-12" />
+        <div className="absolute bottom-10 right-10 w-20 h-20 border-2 border-accent/20 -rotate-12" />
       </div>
 
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="text-center">
-          {/* Logo */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-              Sajal's Portfolio
+      <div className="container mx-auto px-4 py-8 md:py-12 relative z-10">
+        {/* Logo & Description */}
+        <div className="text-center mb-6 md:mb-8">
+          <div className="inline-block relative mb-3">
+            <div className="absolute inset-0 bg-primary translate-x-0.5 translate-y-0.5" />
+            <h2 className="relative text-xl md:text-2xl font-heading bg-card text-foreground px-4 py-2 border-2 border-border">
+              💻 Sajal's Portfolio
             </h2>
-            <p className="text-muted-foreground max-w-md mx-auto">
-              Passionate developer creating innovative solutions and meaningful applications.
-            </p>
           </div>
+          <p className="text-sm text-foreground/80 max-w-md mx-auto">
+            Creating innovative solutions and meaningful applications.
+          </p>
+        </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center gap-4 mb-8">
+        {/* Social Links */}
+        <div className="flex justify-center gap-3 mb-6 md:mb-8">
+          {socialLinks.map(({ href, icon: Icon, label, hoverColor }) => (
             <a
-              href="https://github.com/ydvSajal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-3 rounded-xl bg-card hover:bg-card-hover border border-card-border transition-all duration-300 hover:shadow-glow"
+              key={label}
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              aria-label={label}
+              className={`p-3 bg-card border-2 border-border retro-shadow hover:retro-shadow-lg ${hoverColor} hover:text-white transition-all duration-200 group`}
             >
-              <Github className="h-5 w-5 text-foreground/70 group-hover:text-foreground transition-colors" />
+              <Icon className="h-5 w-5" />
             </a>
+          ))}
+        </div>
+
+        {/* Quick Links */}
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-6 md:mb-8">
+          {quickLinks.map(({ href, label }) => (
             <a
-              href="https://www.linkedin.com/in/sajal-yadav-6a0b5930a"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-3 rounded-xl bg-card hover:bg-card-hover border border-card-border transition-all duration-300 hover:shadow-glow"
+              key={label}
+              href={href}
+              className="text-sm font-bold text-foreground hover:text-primary transition-colors duration-200"
             >
-              <Linkedin className="h-5 w-5 text-foreground/70 group-hover:text-accent transition-colors" />
+              {label}
             </a>
-            <a
-              href="mailto:sajalkumar1765@gmail.com"
-              className="group p-3 rounded-xl bg-card hover:bg-card-hover border border-card-border transition-all duration-300 hover:shadow-glow"
-            >
-              <Mail className="h-5 w-5 text-foreground/70 group-hover:text-primary transition-colors" />
-            </a>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-1 bg-primary border-y-2 border-border mb-6" />
+
+        {/* Copyright */}
+        <div className="text-center text-xs md:text-sm text-foreground/80 space-y-2">
+          <p>© {currentYear} Sajal Yadav. All rights reserved.</p>
+          <div className="flex items-center justify-center gap-1.5">
+            <span>Made with</span>
+            <Heart className="h-4 w-4 text-destructive fill-destructive animate-pulse" />
+            <span>using React & TypeScript</span>
           </div>
-
-          {/* Quick Links */}
-          <div className="mb-8">
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <a 
-                href="#about" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                About
-              </a>
-              <a 
-                href="#skills" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                Skills
-              </a>
-              <a 
-                href="#education" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                Education
-              </a>
-              <a 
-                href="#projects" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                Projects
-              </a>
-              <a 
-                href="#contact" 
-                className="text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-gradient-primary opacity-30 mb-6" />
-
-          {/* Copyright */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-muted-foreground">
-            <span>© {currentYear} Sajal Yadav. All rights reserved.</span>
-            <span className="hidden sm:inline">•</span>
-            <div className="flex items-center gap-1">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-destructive animate-pulse" />
-              <span>using React & TypeScript</span>
-            </div>
-          </div>
-
           {/* Additional Note */}
           <div className="mt-4 text-xs text-muted-foreground/70">
             Built with modern web technologies and lots of coffee ☕

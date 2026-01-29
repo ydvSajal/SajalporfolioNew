@@ -1,6 +1,5 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ProjectsScene3D from './ProjectsScene3D';
 import { useEffect, useRef } from 'react';
 import { GitHubStats } from './GitHubStats';
 
@@ -116,26 +115,25 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-12 md:py-20 bg-background relative overflow-hidden perspective-2000">
-      {/* 3D Background Scene */}
-      <ProjectsScene3D />
-      
-      {/* Animated Background Gradients */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 right-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float-delay" />
+    <section id="projects" className="py-12 md:py-20 bg-background relative overflow-hidden">
+      {/* Retro Decorative Elements */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="absolute top-20 right-20 w-40 h-40 border-2 border-primary/15 rotate-12 retro-shadow-lg" />
+        <div className="absolute bottom-20 left-20 w-32 h-32 border-2 border-accent/15 -rotate-12" />
+        <div className="absolute top-1/2 right-1/3 w-24 h-24 rounded-full border-2 border-primary/10" />
       </div>
 
       <div className="container mx-auto px-4 relative z-20">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              My Projects
-            </span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto mb-4 md:mb-6 rounded-full animate-expand" />
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-sm md:text-base">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-block relative">
+            <div className="absolute inset-0 bg-primary translate-x-1 translate-y-1" />
+            <h2 className="relative text-3xl md:text-4xl font-heading bg-card text-foreground px-6 py-3 retro-border retro-shadow-lg">
+              🚀 My Projects
+            </h2>
+          </div>
+          <div className="w-32 h-2 bg-primary mx-auto my-6 retro-border" />
+          <p className="text-foreground max-w-2xl mx-auto text-sm md:text-lg font-medium">
             A selection of projects showcasing my skills and experience in web development.
           </p>
         </div>
@@ -146,29 +144,27 @@ const ProjectsSection = () => {
             <div 
               key={project.title} 
               ref={(el) => (projectsRef.current[index] = el)}
-              className="group opacity-0"
+              className="group"
             >
-              <div className="bg-gradient-card border border-card-border rounded-xl overflow-hidden shadow-card hover:shadow-float transition-all duration-500 hover:scale-105 hover:-rotate-1 transform-gpu">
+              <div className="bg-card border-4 border-border overflow-hidden retro-shadow-lg hover:retro-shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+                {/* Colorful corner accent */}
+                <div className="absolute top-0 right-0 w-12 h-12 bg-primary/30 -translate-y-6 translate-x-6 rotate-45 z-10" />
+                
                 {/* Project Header with Icon */}
-                <div className={`h-32 md:h-40 bg-gradient-to-br ${project.color} relative overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
-                  <div className="absolute inset-0 bg-black/10" />
-                  {/* Animated particles on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-ping" />
-                    <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-ping animation-delay-300" />
-                    <div className="absolute bottom-1/3 left-1/2 w-1.5 h-1.5 bg-white/30 rounded-full animate-ping animation-delay-700" />
-                  </div>
+                <div className="h-32 md:h-40 bg-accent relative overflow-hidden border-b-4 border-border">
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="text-4xl md:text-5xl mb-2 group-hover:scale-125 transition-transform duration-300">
+                    <div className="text-5xl md:text-6xl mb-2 group-hover:scale-110 transition-transform duration-300">
                       {project.icon}
                     </div>
-                    <h3 className="text-white text-xl md:text-2xl font-bold px-4 text-center group-hover:scale-105 transition-transform duration-300">{project.title}</h3>
+                    <h3 className="text-accent-foreground text-xl md:text-2xl font-heading px-4 text-center">{project.title}</h3>
                   </div>
+                  {/* Retro stripes on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity retro-stripes" />
                 </div>
 
                 {/* Project Content */}
-                <div className="p-4 md:p-6">
-                  <p className="text-muted-foreground text-xs md:text-sm mb-4 leading-relaxed line-clamp-2">
+                <div className="p-4 md:p-6 relative z-10">
+                  <p className="text-foreground text-xs md:text-sm mb-4 leading-relaxed">
                     {project.fullDescription}
                   </p>
 
@@ -177,8 +173,12 @@ const ProjectsSection = () => {
                     {project.technologies.map((tech, i) => (
                       <span
                         key={tech}
-                        className="bg-card-hover border border-card-border text-foreground/70 px-2 md:px-3 py-1 rounded-md text-xs hover:scale-110 hover:bg-primary/10 transition-all duration-300 cursor-default"
-                        style={{ animationDelay: `${i * 50}ms` }}
+                        className={`px-2 md:px-3 py-1 text-xs font-bold border-2 border-border retro-shadow hover:retro-shadow-md transition-all ${
+                          i % 4 === 0 ? 'bg-primary text-primary-foreground' : 
+                          i % 4 === 1 ? 'bg-accent text-accent-foreground' :
+                          i % 4 === 2 ? 'bg-secondary text-secondary-foreground' :
+                          'bg-card text-foreground'
+                        }`}
                       >
                         {tech}
                       </span>
@@ -191,7 +191,7 @@ const ProjectsSection = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1 hover:bg-card-hover hover:scale-105 transition-all duration-300 text-xs md:text-sm h-8 md:h-9"
+                        className="flex-1 text-xs md:text-sm h-8 md:h-9 font-bold"
                         onClick={() => window.open(project.githubUrl, '_blank')}
                       >
                         <Github className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
@@ -202,7 +202,7 @@ const ProjectsSection = () => {
                     {project.liveUrl && (
                       <Button
                         size="sm"
-                        className={`flex-1 bg-gradient-to-r ${project.color} hover:opacity-90 hover:scale-105 transition-all duration-300 text-xs md:text-sm h-8 md:h-9`}
+                        className="flex-1 text-xs md:text-sm h-8 md:h-9 font-bold"
                         onClick={() => window.open(project.liveUrl, '_blank')}
                       >
                         <ExternalLink className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
@@ -222,19 +222,22 @@ const ProjectsSection = () => {
         </div>
 
         {/* Enhanced Call to Action */}
-        <div className="text-center mt-12 md:mt-16 animate-fade-in">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 md:gap-6 bg-gradient-card border border-card-border rounded-xl p-6 md:p-8 shadow-card hover:shadow-float transition-all duration-500 group hover:scale-105">
+        <div className="text-center mt-12 md:mt-16">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 md:gap-6 bg-accent border-4 border-border p-6 md:p-8 retro-shadow-xl hover:retro-shadow-2xl transition-all duration-300 group">
+            <div className="p-4 bg-primary border-2 border-border retro-shadow">
+              <Github className="h-8 w-8 md:h-10 md:w-10 text-primary-foreground" />
+            </div>
             <div>
-              <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-lg md:text-xl font-heading text-accent-foreground mb-2">
                 Want to see more? 🚀
               </h3>
-              <p className="text-muted-foreground text-xs md:text-sm">
+              <p className="text-accent-foreground/80 text-xs md:text-sm font-medium">
                 Explore my GitHub for more projects and contributions.
               </p>
             </div>
             <Button
               size="lg"
-              className="bg-gradient-primary hover:opacity-90 hover:scale-110 transition-all duration-300 text-sm md:text-base shadow-lg hover:shadow-xl"
+              className="font-bold text-sm md:text-base"
               onClick={() => window.open('https://github.com/ydvSajal', '_blank')}
             >
               <Github className="h-4 w-4 md:h-5 md:w-5 mr-2" />

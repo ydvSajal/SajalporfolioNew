@@ -7,10 +7,7 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,71 +21,69 @@ const Navigation = () => {
     { label: 'Contact', href: '#contact' },
   ];
 
+  const handleNavClick = () => setIsOpen(false);
+
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'glass-effect shadow-3d backdrop-blur-xl'
+          ? 'bg-card border-b-4 border-border retro-shadow-lg backdrop-blur-sm'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="relative group">
-            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Sajal's Portfolio
+          <a href="#" className="relative group">
+            <div className="absolute inset-0 bg-primary translate-x-0.5 translate-y-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span className="relative text-lg md:text-xl font-heading bg-card text-foreground px-3 py-1 border-2 border-border group-hover:retro-shadow transition-all">
+              💻 Sajal
             </span>
-            <div className="absolute -inset-2 bg-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
-          </div>
+          </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="relative group text-foreground/80 hover:text-foreground transition-colors duration-300"
+                className="relative px-4 py-2 text-sm font-bold text-foreground hover:bg-primary hover:text-primary-foreground border-2 border-transparent hover:border-border transition-all duration-200"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
           <Button
-            variant="ghost"
+            variant="outline"
             size="icon"
             className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed inset-x-0 top-16 glass-effect transition-all duration-300 ${
-          isOpen
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 -translate-y-4 pointer-events-none'
-        }`}
-      >
-        <div className="px-4 py-6 space-y-4">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="block text-lg text-foreground/80 hover:text-foreground transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </a>
-          ))}
+      {isOpen && (
+        <div className="md:hidden bg-card border-b-4 border-border retro-shadow-lg">
+          <div className="px-4 py-4 space-y-2">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={handleNavClick}
+                className="block px-4 py-3 text-sm font-bold text-foreground hover:bg-primary hover:text-primary-foreground border-2 border-border retro-shadow transition-all"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

@@ -22,9 +22,9 @@ export const LoadingBar = () => {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] h-1 bg-background/50 backdrop-blur-sm">
+    <div className="fixed top-0 left-0 right-0 z-[100] h-2 bg-background border-b-2 border-border">
       <div
-        className="h-full bg-gradient-to-r from-primary via-accent to-primary transition-all duration-300 ease-out"
+        className="h-full bg-primary transition-all duration-300 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>
