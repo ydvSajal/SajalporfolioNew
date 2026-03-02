@@ -19,6 +19,14 @@ const resolveEffectiveMethod = (req: any): string => {
     return method;
   }
 
+  const queryOverrideRaw = req.query?._method;
+  const queryOverride = Array.isArray(queryOverrideRaw)
+    ? String(queryOverrideRaw[0] || "").toUpperCase()
+    : String(queryOverrideRaw || "").toUpperCase();
+  if (queryOverride === "PATCH" || queryOverride === "DELETE") {
+    return queryOverride;
+  }
+
   const headerValue = req.headers?.["x-http-method-override"];
   const rawOverride = Array.isArray(headerValue) ? headerValue[0] : headerValue;
   const override = typeof rawOverride === "string" ? rawOverride.toUpperCase() : "";

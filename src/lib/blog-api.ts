@@ -92,7 +92,7 @@ export const api = {
     }),
 
   updatePost: (id: string, payload: Partial<PostPayload>) =>
-    request<{ item: Post }>(`/api/admin/posts/${id}`, {
+    request<{ item: Post }>(`/api/admin/posts/${id}?_method=PATCH`, {
       method: 'POST',
       headers: {
         'X-HTTP-Method-Override': 'PATCH',
@@ -101,7 +101,7 @@ export const api = {
     }),
 
   deletePost: (id: string) =>
-    request<{ ok: boolean }>(`/api/admin/posts/${id}`, {
+    request<{ ok: boolean }>(`/api/admin/posts/${id}?_method=DELETE`, {
       method: 'POST',
       headers: {
         'X-HTTP-Method-Override': 'DELETE',
