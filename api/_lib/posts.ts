@@ -152,7 +152,7 @@ const parseJsonArray = (value: unknown): string[] => {
 };
 
 const parseImageArray = (value: unknown): PostImage[] => {
-  const normalize = (arr: unknown[]) =>
+  const normalize = (arr: unknown[]): PostImage[] =>
     arr
       .map((item) => {
         if (!item || typeof item !== "object") return null;
@@ -163,7 +163,7 @@ const parseImageArray = (value: unknown): PostImage[] => {
           alt: typeof maybe.alt === "string" && maybe.alt.trim() ? maybe.alt.trim() : undefined,
         };
       })
-      .filter((item): item is { url: string; alt?: string } => Boolean(item));
+      .filter((item): item is PostImage => item !== null);
 
   if (Array.isArray(value)) {
     return normalize(value);
