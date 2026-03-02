@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import RetroBackground from '@/components/RetroBackground';
 import RetroScanlines from '@/components/RetroScanlines';
+import { toRenderableMediaUrl } from '@/lib/media-url';
 
 const ADMIN_ROUTE_HINT = '/admin';
 
@@ -567,7 +568,7 @@ const AdminPortal = () => {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                           {editor.images.map((image, index) => (
                             <div key={`${image.url}-${index}`} className="border-2 border-border p-2 space-y-2 bg-card">
-                              <img src={image.url} alt={image.alt || `Event image ${index + 1}`} className="w-full h-24 object-cover" />
+                              <img src={toRenderableMediaUrl(image.url)} alt={image.alt || `Event image ${index + 1}`} className="w-full h-24 object-cover" />
                               <Button
                                 type="button"
                                 variant="outline"

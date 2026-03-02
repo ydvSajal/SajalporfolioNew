@@ -1,4 +1,5 @@
 import { PostBlock } from '@/types/posts';
+import { toRenderableMediaUrl } from '@/lib/media-url';
 
 type PostBlocksProps = {
   blocks: PostBlock[];
@@ -34,7 +35,7 @@ const PostBlocks = ({ blocks }: PostBlocksProps) => {
           return (
             <figure key={block.id} className="space-y-2">
               <img
-                src={block.imageUrl}
+                src={toRenderableMediaUrl(block.imageUrl)}
                 alt={block.imageAlt || 'Post image'}
                 className="w-full rounded-none border-2 border-border retro-shadow object-cover max-h-[500px]"
                 loading="lazy"

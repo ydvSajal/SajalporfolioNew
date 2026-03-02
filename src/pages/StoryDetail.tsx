@@ -9,6 +9,7 @@ import { api } from '@/lib/blog-api';
 import { Post } from '@/types/posts';
 import RetroBackground from '@/components/RetroBackground';
 import RetroScanlines from '@/components/RetroScanlines';
+import { toRenderableMediaUrl } from '@/lib/media-url';
 
 const StoryDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -61,7 +62,7 @@ const StoryDetail = () => {
         {!loading && !error && post && (
           <article className="border-4 border-border bg-card retro-shadow-lg overflow-hidden">
             {post.coverImageUrl && (
-              <img src={post.coverImageUrl} alt={post.title} className="w-full h-64 md:h-80 object-cover border-b-4 border-border" />
+              <img src={toRenderableMediaUrl(post.coverImageUrl)} alt={post.title} className="w-full h-64 md:h-80 object-cover border-b-4 border-border" />
             )}
             <div className="p-6 md:p-8 space-y-6">
               <div className="flex flex-wrap gap-2">

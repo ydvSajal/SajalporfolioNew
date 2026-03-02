@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Newspaper } from 'lucide-react';
 import RetroBackground from '@/components/RetroBackground';
 import RetroScanlines from '@/components/RetroScanlines';
+import { toRenderableMediaUrl } from '@/lib/media-url';
 
 const Stories = () => {
   const [items, setItems] = useState<Post[]>([]);
@@ -113,7 +114,7 @@ const Stories = () => {
         {!loading && !error && featured && (
           <article className="border-4 border-border bg-card retro-shadow-lg overflow-hidden">
             {featured.coverImageUrl && (
-              <img src={featured.coverImageUrl} alt={featured.title} className="w-full h-64 md:h-80 object-cover border-b-4 border-border" />
+              <img src={toRenderableMediaUrl(featured.coverImageUrl)} alt={featured.title} className="w-full h-64 md:h-80 object-cover border-b-4 border-border" />
             )}
             <div className="p-6 md:p-8 space-y-3">
               <div className="flex flex-wrap gap-2">
