@@ -14,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import RetroBackground from '@/components/RetroBackground';
 import RetroScanlines from '@/components/RetroScanlines';
 
-const ADMIN_ROUTE_HINT = '/admin-zenith-portal';
+const ADMIN_ROUTE_HINT = '/admin';
 
 const EVENT_TYPES: Array<{ value: EventType; label: string }> = [
   { value: 'hackathon', label: 'Hackathon' },

@@ -55,7 +55,7 @@ This project is built with:
 
 This project now includes:
 
-- Hidden admin route: `/admin-zenith-portal`
+- Admin route: `/admin`
 - Password-protected admin login using secure HTTP-only cookies
 - Blog/News publishing from admin panel
 - Public stories pages:

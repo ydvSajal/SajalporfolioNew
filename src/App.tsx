@@ -24,7 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/stories" element={<Stories />} />
             <Route path="/stories/:slug" element={<StoryDetail />} />
-            <Route path="/admin-zenith-portal" element={<AdminPortal />} />
+            <Route path="/admin" element={<AdminPortal />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
