@@ -12,7 +12,6 @@ const required = [
 const passwordOptions = ["ADMIN_PASSWORD_HASH", "ADMIN_PASSWORD"];
 
 const optional = [
-  "ADMIN_TOTP_SECRET",
   "UPSTASH_REDIS_REST_URL",
   "UPSTASH_REDIS_REST_TOKEN",
   "VERCEL_PROJECT_PRODUCTION_URL",

@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { createHash, randomUUID } from "crypto";
 import { SignJWT, jwtVerify } from "jose";
-import * as otplibPackage from "otplib";
 import { getEnv } from "./env.js";
 import { getMemoryStore, getRedis } from "./store.js";
 import { getRequestIp, readCookie, sendJson } from "./http.js";
@@ -32,11 +31,6 @@ type DbSessionStatus = {
 
 const secretKey = () => new TextEncoder().encode(getEnv("ADMIN_JWT_SECRET"));
 const tokenHash = (token: string) => createHash("sha256").update(token).digest("hex");
-const getTotpSecret = () => process.env.ADMIN_TOTP_SECRET?.trim();
-const authenticator =
-  (otplibPackage as { authenticator?: { check: (token: string, secret: string) => boolean } }).authenticator ??
-  (otplibPackage as { default?: { authenticator?: { check: (token: string, secret: string) => boolean } } }).default
-    ?.authenticator;
 
 const checkScopedRateLimit = async (req: any, key: string, maxAttempts: number, windowSeconds: number) => {
   const redis = getRedis();
@@ -245,28 +239,6 @@ export const verifyAdminPassword = async (password: string, email?: string) => {
   }
 
   return bcrypt.compare(password, passwordHash);
-};
-
-export const isTotpEnabled = () => Boolean(getTotpSecret());
-
-export const verifyAdminTotp = (code?: string) => {
-  const secret = getTotpSecret();
-  if (!secret) {
-    return true;
-  }
-
-  if (!code) {
-    return false;
-  }
-
-  try {
-    if (!authenticator) {
-      return false;
-    }
-    return authenticator.check(code.replace(/\s+/g, ""), secret);
-  } catch {
-    return false;
-  }
 };
 
 export const getAdminEmail = () => getEnv("ADMIN_EMAIL").trim().toLowerCase();

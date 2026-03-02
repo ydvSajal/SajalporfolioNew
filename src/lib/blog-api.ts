@@ -20,10 +20,10 @@ const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
 };
 
 export const api = {
-  login: (email: string, password: string, totpCode?: string) =>
+  login: (email: string, password: string) =>
     request<{ user: UserSession; security?: { totpEnabled: boolean } }>('/api/admin/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email, password, totpCode }),
+      body: JSON.stringify({ email, password }),
     }),
 
   logout: () =>

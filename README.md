@@ -70,7 +70,6 @@ Create `.env.local` from `.env.example` and set:
 - `ADMIN_EMAIL`: admin login email
 - `ADMIN_PASSWORD_HASH`: bcrypt hash of your admin password (recommended)
 - `ADMIN_PASSWORD`: plain password fallback (dev only)
-- `ADMIN_TOTP_SECRET`: optional TOTP secret for 2FA login
 - `ADMIN_JWT_SECRET`: random strong secret for JWT signing
 - `DATABASE_URL`: Neon/Postgres connection string (primary data store)
 - `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`: persistent post storage
@@ -115,7 +114,6 @@ Create `.env.local` from `.env.example` and set:
 
 ### Hardening additions
 
-- Optional 2FA check during admin login when `ADMIN_TOTP_SECRET` is set
 - Write endpoint throttling for admin create/update/delete/upload requests
 - Admin post list pagination (`page`, `limit`) on `/api/admin/posts`
 

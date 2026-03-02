@@ -158,7 +158,6 @@ const AdminPortal = () => {
   const [user, setUser] = useState<UserSession | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [totpCode, setTotpCode] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
 
   const [posts, setPosts] = useState<Post[]>([]);
@@ -240,10 +239,9 @@ const AdminPortal = () => {
     event.preventDefault();
     setAuthLoading(true);
     try {
-      const response = await api.login(email.trim(), password, totpCode.trim() || undefined);
+      const response = await api.login(email.trim(), password);
       setUser(response.user);
       setPassword('');
-      setTotpCode('');
       toast({ title: 'Logged in', description: 'Welcome to admin portal.' });
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Login failed';
@@ -405,17 +403,6 @@ const AdminPortal = () => {
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
                   <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="totpCode">2FA Code (if enabled)</Label>
-                  <Input
-                    id="totpCode"
-                    inputMode="numeric"
-                    value={totpCode}
-                    onChange={(e) => setTotpCode(e.target.value)}
-                    placeholder="123456"
-                  />
                 </div>
 
                 <Button type="submit" className="w-full" disabled={authLoading}>

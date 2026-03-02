@@ -3,10 +3,8 @@ import {
   createSessionToken,
   ensureAdminSeeded,
   getAdminEmail,
-  isTotpEnabled,
   persistSession,
   setSessionCookie,
-  verifyAdminTotp,
   verifyAdminPassword,
 } from "../../_lib/auth.js";
 import { writeAuditLog } from "../../_lib/audit.js";
@@ -15,7 +13,6 @@ import { ensureMethod, parseBody, sendJson } from "../../_lib/http.js";
 type LoginBody = {
   email?: string;
   password?: string;
-  totpCode?: string;
 };
 
 export default async function handler(req: any, res: any) {
@@ -27,7 +24,6 @@ export default async function handler(req: any, res: any) {
     const body = parseBody<LoginBody>(req);
     const email = body.email?.trim().toLowerCase() ?? "";
     const password = body.password ?? "";
-    const totpCode = body.totpCode?.trim();
 
     const allowedAttempt = await checkLoginRateLimit(req, email || "anonymous");
     if (!allowedAttempt) {
@@ -36,16 +32,15 @@ export default async function handler(req: any, res: any) {
 
     const adminEmail = getAdminEmail().toLowerCase();
     const validCredentials = email === adminEmail && (await verifyAdminPassword(password, email));
-    const validTotp = verifyAdminTotp(totpCode);
 
-    if (!validCredentials || !validTotp) {
+    if (!validCredentials) {
       await writeAuditLog({
         actorEmail: email || "anonymous",
         action: "login_failed",
         resourceType: "auth",
-        metadata: { reason: !validCredentials ? "invalid_credentials" : "invalid_totp" },
+        metadata: { reason: "invalid_credentials" },
       });
-      return sendJson(res, 401, { error: !validCredentials ? "Invalid credentials" : "Invalid 2FA code" });
+      return sendJson(res, 401, { error: "Invalid credentials" });
     }
 
     const token = await createSessionToken({ sub: adminEmail, email: adminEmail, role: "admin" });
@@ -62,7 +57,7 @@ export default async function handler(req: any, res: any) {
     return sendJson(res, 200, {
       ok: true,
       user: { email: adminEmail, role: "admin" },
-      security: { totpEnabled: isTotpEnabled() },
+      security: { totpEnabled: false },
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Login failed";
