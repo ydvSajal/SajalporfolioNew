@@ -1,6 +1,11 @@
 import { AdminAnalytics, Post, PostPayload, PostType, UserSession } from '@/types/posts';
 
 const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
+  const requestedMethod = String(init?.method || 'GET').toUpperCase();
+  const overrideHeader =
+    init?.headers &&
+    (init.headers as Record<string, string>)['X-HTTP-Method-Override'];
+
   const response = await fetch(url, {
     credentials: 'include',
     headers: {
@@ -22,6 +27,20 @@ const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
     : {};
 
   if (!response.ok) {
+    if (response.status === 405) {
+      if (requestedMethod !== 'POST') {
+        throw new Error(`HTTP 405: Server blocked ${requestedMethod}. This deployment may allow only POST for admin writes.`);
+      }
+
+      if (overrideHeader) {
+        throw new Error(
+          `HTTP 405: Server blocked method override (${overrideHeader}). Ensure admin API accepts POST with X-HTTP-Method-Override.`
+        );
+      }
+
+      throw new Error('HTTP 405: Server blocked this request method.');
+    }
+
     const fallback = raw ? raw.slice(0, 180) : `HTTP ${response.status}`;
     throw new Error(data?.error || fallback || 'Request failed');
   }
@@ -74,13 +93,19 @@ export const api = {
 
   updatePost: (id: string, payload: Partial<PostPayload>) =>
     request<{ item: Post }>(`/api/admin/posts/${id}`, {
-      method: 'PATCH',
+      method: 'POST',
+      headers: {
+        'X-HTTP-Method-Override': 'PATCH',
+      },
       body: JSON.stringify(payload),
     }),
 
   deletePost: (id: string) =>
     request<{ ok: boolean }>(`/api/admin/posts/${id}`, {
-      method: 'DELETE',
+      method: 'POST',
+      headers: {
+        'X-HTTP-Method-Override': 'DELETE',
+      },
     }),
 
   uploadImage: async (file: File) => {

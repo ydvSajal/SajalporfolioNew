@@ -13,6 +13,23 @@ import {
 import { writeAuditLog } from "../../_lib/audit.js";
 import { ensureMethod, parseBody, sendJson } from "../../_lib/http.js";
 
+const resolveEffectiveMethod = (req: any): string => {
+  const method = String(req.method || "").toUpperCase();
+  if (method !== "POST") {
+    return method;
+  }
+
+  const headerValue = req.headers?.["x-http-method-override"];
+  const rawOverride = Array.isArray(headerValue) ? headerValue[0] : headerValue;
+  const override = typeof rawOverride === "string" ? rawOverride.toUpperCase() : "";
+
+  if (override === "PATCH" || override === "DELETE") {
+    return override;
+  }
+
+  return method;
+};
+
 const toStorableMediaUrl = (value?: string) => {
   if (!value) return undefined;
   const prefix = "/api/blob?url=";
@@ -76,7 +93,8 @@ const normalizeDate = (status?: PostStatus, publishedAt?: string) => {
 };
 
 export default async function handler(req: any, res: any) {
-  if (!ensureMethod(req, res, ["GET", "PATCH", "DELETE"])) return;
+  const method = resolveEffectiveMethod(req);
+  if (!ensureMethod({ ...req, method }, res, ["GET", "PATCH", "DELETE"])) return;
 
   const session = await requireAdmin(req, res);
   if (!session) return;
@@ -86,7 +104,7 @@ export default async function handler(req: any, res: any) {
     return sendJson(res, 400, { error: "Post id is required" });
   }
 
-  if (req.method === "GET") {
+  if (method === "GET") {
     const post = await getAdminPostById(id);
     if (!post) {
       return sendJson(res, 404, { error: "Post not found" });
@@ -99,7 +117,7 @@ export default async function handler(req: any, res: any) {
     return sendJson(res, 429, { error: "Too many write requests. Please wait a moment and try again." });
   }
 
-  if (req.method === "DELETE") {
+  if (method === "DELETE") {
     const deleted = await deletePostById(id);
     if (!deleted) {
       return sendJson(res, 404, { error: "Post not found" });
