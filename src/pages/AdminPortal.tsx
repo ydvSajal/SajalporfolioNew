@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import RetroBackground from '@/components/RetroBackground';
 import RetroScanlines from '@/components/RetroScanlines';
-import { toRenderableMediaUrl } from '@/lib/media-url';
+import { toRenderableMediaUrl, toStorableMediaUrl } from '@/lib/media-url';
 
 const ADMIN_ROUTE_HINT = '/admin';
 
@@ -100,7 +100,12 @@ const toPayload = (editor: EditorState, status: PostStatus): PostPayload => {
   const title = editor.title.trim();
   const shortDescription = editor.shortDescription.trim();
   const detailedExperience = editor.detailedExperience.trim();
-  const safeImages = editor.images.filter((image) => image.url.trim());
+  const safeImages = editor.images
+    .map((image) => ({
+      url: toStorableMediaUrl(image.url).trim(),
+      alt: image.alt,
+    }))
+    .filter((image) => image.url);
 
   const blocks = [
     shortDescription
@@ -145,7 +150,7 @@ const toPayload = (editor: EditorState, status: PostStatus): PostPayload => {
     techStack: splitCsv(editor.techStack),
     teamMembers: splitCsv(editor.teamMembers),
     projectLink: editor.projectLink.trim() || undefined,
-    certificateUrl: editor.certificateUrl.trim() || undefined,
+    certificateUrl: toStorableMediaUrl(editor.certificateUrl).trim() || undefined,
     images: safeImages,
     tags: [editor.eventType],
     blocks: blocks.length ? blocks : [{ id: makeBlockId('fallback'), type: 'paragraph', text: shortDescription || title }],

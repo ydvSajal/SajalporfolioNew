@@ -13,6 +13,17 @@ import {
 import { writeAuditLog } from "../../_lib/audit.js";
 import { ensureMethod, parseBody, sendJson } from "../../_lib/http.js";
 
+const toStorableMediaUrl = (value?: string) => {
+  if (!value) return undefined;
+  const prefix = "/api/blob?url=";
+  if (!value.startsWith(prefix)) return value;
+  try {
+    return decodeURIComponent(value.slice(prefix.length));
+  } catch {
+    return value;
+  }
+};
+
 const blockSchema = z.object({
   id: z.string().min(1),
   type: z.enum(["heading", "paragraph", "image"]),
@@ -115,7 +126,7 @@ export default async function handler(req: any, res: any) {
     const slugBase = parsed.slug || parsed.title;
     const slug = slugBase ? await toSlug(slugBase, id) : existing.slug;
     const safeImages = parsed.images?.map((image) => ({
-      url: image.url.trim(),
+      url: (toStorableMediaUrl(image.url) || image.url).trim(),
       alt: image.alt?.trim() || undefined,
     }));
 
@@ -124,7 +135,7 @@ export default async function handler(req: any, res: any) {
       title: parsed.title,
       slug,
       excerpt: parsed.shortDescription?.trim() || parsed.excerpt,
-      coverImageUrl: parsed.coverImageUrl === "" ? undefined : parsed.coverImageUrl,
+      coverImageUrl: parsed.coverImageUrl === "" ? undefined : toStorableMediaUrl(parsed.coverImageUrl) || parsed.coverImageUrl,
       status: parsed.status as PostStatus | undefined,
       publishedAt: normalizeDate(parsed.status as PostStatus | undefined, parsed.publishedAt as string | undefined),
       featured: parsed.featured,
@@ -139,7 +150,7 @@ export default async function handler(req: any, res: any) {
       techStack: parsed.techStack,
       teamMembers: parsed.teamMembers,
       projectLink: parsed.projectLink === "" ? undefined : parsed.projectLink,
-      certificateUrl: parsed.certificateUrl === "" ? undefined : parsed.certificateUrl,
+      certificateUrl: parsed.certificateUrl === "" ? undefined : toStorableMediaUrl(parsed.certificateUrl) || parsed.certificateUrl,
       images: safeImages,
       tags: parsed.tags,
       blocks: parsed.blocks as PostBlock[] | undefined,

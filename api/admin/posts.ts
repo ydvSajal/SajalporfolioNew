@@ -16,6 +16,17 @@ import { checkAdminWriteRateLimit } from "../_lib/auth.js";
 import { writeAuditLog } from "../_lib/audit.js";
 import { ensureMethod, parseBody, sendJson } from "../_lib/http.js";
 
+const toStorableMediaUrl = (value?: string) => {
+  if (!value) return undefined;
+  const prefix = "/api/blob?url=";
+  if (!value.startsWith(prefix)) return value;
+  try {
+    return decodeURIComponent(value.slice(prefix.length));
+  } catch {
+    return value;
+  }
+};
+
 const blockSchema = z.object({
   id: z.string().min(1),
   type: z.enum(["heading", "paragraph", "image"]),
@@ -129,7 +140,7 @@ export default async function handler(req: any, res: any) {
     const parsed = createSchema.parse(body);
     const slug = await toSlug(parsed.slug || parsed.title);
     const safeImages = parsed.images.map((image) => ({
-      url: image.url.trim(),
+      url: (toStorableMediaUrl(image.url) || image.url).trim(),
       alt: image.alt?.trim() || undefined,
     }));
     const blocks = parsed.blocks?.length
@@ -146,7 +157,7 @@ export default async function handler(req: any, res: any) {
       title: parsed.title,
       slug,
       excerpt: parsed.shortDescription?.trim() || parsed.excerpt,
-      coverImageUrl: parsed.coverImageUrl || safeImages[0]?.url || undefined,
+      coverImageUrl: toStorableMediaUrl(parsed.coverImageUrl) || safeImages[0]?.url || undefined,
       status: parsed.status as PostStatus,
       publishedAt: normalizeDate(parsed.status as PostStatus, parsed.publishedAt),
       featured: parsed.featured,
@@ -161,7 +172,7 @@ export default async function handler(req: any, res: any) {
       techStack: parsed.techStack,
       teamMembers: parsed.teamMembers,
       projectLink: parsed.projectLink || undefined,
-      certificateUrl: parsed.certificateUrl || undefined,
+      certificateUrl: toStorableMediaUrl(parsed.certificateUrl) || undefined,
       images: safeImages,
       tags: parsed.tags,
       blocks,

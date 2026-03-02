@@ -10,10 +10,20 @@ const request = async <T>(url: string, init?: RequestInit): Promise<T> => {
     ...init,
   });
 
-  const data = await response.json().catch(() => ({}));
+  const raw = await response.text();
+  const data = raw
+    ? (() => {
+        try {
+          return JSON.parse(raw);
+        } catch {
+          return {};
+        }
+      })()
+    : {};
 
   if (!response.ok) {
-    throw new Error(data?.error || 'Request failed');
+    const fallback = raw ? raw.slice(0, 180) : `HTTP ${response.status}`;
+    throw new Error(data?.error || fallback || 'Request failed');
   }
 
   return data as T;
