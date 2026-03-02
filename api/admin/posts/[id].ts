@@ -15,10 +15,8 @@ import { ensureMethod, parseBody, sendJson } from "../../_lib/http.js";
 
 const resolveEffectiveMethod = (req: any): string => {
   const method = String(req.method || "").toUpperCase();
-  if (method !== "POST") {
-    return method;
-  }
-
+  
+  // Check query param first (most reliable on restrictive hosts)
   const queryOverrideRaw = req.query?._method;
   const queryOverride = Array.isArray(queryOverrideRaw)
     ? String(queryOverrideRaw[0] || "").toUpperCase()
@@ -27,14 +25,15 @@ const resolveEffectiveMethod = (req: any): string => {
     return queryOverride;
   }
 
+  // Check header second
   const headerValue = req.headers?.["x-http-method-override"];
   const rawOverride = Array.isArray(headerValue) ? headerValue[0] : headerValue;
   const override = typeof rawOverride === "string" ? rawOverride.toUpperCase() : "";
-
   if (override === "PATCH" || override === "DELETE") {
     return override;
   }
 
+  // Fall back to actual method
   return method;
 };
 
@@ -101,9 +100,6 @@ const normalizeDate = (status?: PostStatus, publishedAt?: string) => {
 };
 
 export default async function handler(req: any, res: any) {
-  const method = resolveEffectiveMethod(req);
-  if (!ensureMethod({ ...req, method }, res, ["GET", "PATCH", "DELETE"])) return;
-
   const session = await requireAdmin(req, res);
   if (!session) return;
 
@@ -111,6 +107,9 @@ export default async function handler(req: any, res: any) {
   if (!id) {
     return sendJson(res, 400, { error: "Post id is required" });
   }
+
+  const method = resolveEffectiveMethod(req);
+  if (!ensureMethod({ ...req, method }, res, ["GET", "POST", "PATCH", "DELETE"])) return;
 
   if (method === "GET") {
     const post = await getAdminPostById(id);

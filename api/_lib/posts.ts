@@ -163,7 +163,7 @@ const parseImageArray = (value: unknown): PostImage[] => {
           alt: typeof maybe.alt === "string" && maybe.alt.trim() ? maybe.alt.trim() : undefined,
         };
       })
-      .filter((item): item is PostImage => Boolean(item));
+      .filter((item): item is { url: string; alt?: string } => Boolean(item));
 
   if (Array.isArray(value)) {
     return normalize(value);
