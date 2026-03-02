@@ -89,7 +89,7 @@ const normalizeDate = (status?: PostStatus, publishedAt?: string) => {
 };
 
 export default async function handler(req: any, res: any) {
-  if (!ensureMethod(req, res, ["GET", "PATCH", "DELETE"])) return;
+  if (!ensureMethod(req, res, ["GET", "PATCH", "POST", "PUT", "DELETE"])) return;
 
   const session = await requireAdmin(req, res);
   if (!session) return;
