@@ -15,6 +15,11 @@ const sanitizeFilename = (input: string) =>
     .replace(/[^a-z0-9.-]/g, "-")
     .replace(/-+/g, "-");
 
+const resolveBlobAccess = (): "public" | "private" => {
+  const configured = process.env.BLOB_ACCESS?.trim().toLowerCase();
+  return configured === "private" ? "private" : "public";
+};
+
 export default async function handler(req: any, res: any) {
   if (!ensureMethod(req, res, ["POST"])) return;
 
@@ -43,11 +48,24 @@ export default async function handler(req: any, res: any) {
     const safeName = sanitizeFilename(parsed.filename);
     const pathname = `posts/${Date.now()}-${safeName}`;
 
-    const blob = await put(pathname, buffer, {
-      access: "public",
-      contentType: parsed.contentType,
-      addRandomSuffix: false,
-    });
+    const upload = async (access: "public" | "private") =>
+      put(pathname, buffer, {
+        access,
+        contentType: parsed.contentType,
+        addRandomSuffix: false,
+      });
+
+    let blob;
+    try {
+      blob = await upload(resolveBlobAccess());
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      if (message.includes("Cannot use public access on a private store")) {
+        blob = await upload("private");
+      } else {
+        throw error;
+      }
+    }
 
     return sendJson(res, 201, {
       item: {
