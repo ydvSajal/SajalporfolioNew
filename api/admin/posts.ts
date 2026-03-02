@@ -27,25 +27,12 @@ const toStorableMediaUrl = (value?: string) => {
   }
 };
 
-const isAcceptableMediaUrl = (value: string) => {
-  if (!value) return false;
-  if (value.startsWith("/api/blob?url=")) return true;
-  try {
-    const parsed = new URL(value);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-};
-
-const mediaUrlSchema = z.string().min(1).refine(isAcceptableMediaUrl, "Invalid media URL");
-
 const blockSchema = z.object({
   id: z.string().min(1),
   type: z.enum(["heading", "paragraph", "image"]),
   headingLevel: z.number().int().min(1).max(3).optional(),
   text: z.string().optional(),
-  imageUrl: mediaUrlSchema.optional(),
+  imageUrl: z.string().url().optional(),
   imageAlt: z.string().optional(),
 });
 
@@ -54,7 +41,7 @@ const createSchema = z.object({
   title: z.string().min(3).max(160),
   slug: z.string().min(1).max(190).optional(),
   excerpt: z.string().min(1).max(300),
-  coverImageUrl: mediaUrlSchema.optional().or(z.literal("")),
+  coverImageUrl: z.string().url().optional().or(z.literal("")),
   status: z.enum(["draft", "published", "scheduled", "archived"]),
   publishedAt: z.string().datetime().optional(),
   featured: z.boolean().default(false),
@@ -69,8 +56,8 @@ const createSchema = z.object({
   techStack: z.array(z.string().min(1).max(60)).default([]),
   teamMembers: z.array(z.string().min(1).max(80)).default([]),
   projectLink: z.string().url().optional().or(z.literal("")),
-  certificateUrl: mediaUrlSchema.optional().or(z.literal("")),
-  images: z.array(z.object({ url: mediaUrlSchema, alt: z.string().max(140).optional() })).default([]),
+  certificateUrl: z.string().url().optional().or(z.literal("")),
+  images: z.array(z.object({ url: z.string().url(), alt: z.string().max(140).optional() })).default([]),
   tags: z.array(z.string().min(1).max(30)).default([]),
   blocks: z.array(blockSchema).optional(),
 });

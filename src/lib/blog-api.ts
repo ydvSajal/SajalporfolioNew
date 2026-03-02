@@ -74,7 +74,7 @@ export const api = {
 
   updatePost: (id: string, payload: Partial<PostPayload>) =>
     request<{ item: Post }>(`/api/admin/posts/${id}`, {
-      method: 'POST',
+      method: 'PATCH',
       body: JSON.stringify(payload),
     }),
 
