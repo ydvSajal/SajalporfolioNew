@@ -134,15 +134,19 @@ const HeroSection = () => {
                 <div className="space-y-2 ml-4 text-foreground">
                   <div className="flex items-center hover:bg-primary/10 px-2 py-1 transition-colors">
                     <span className="text-primary text-xl">●</span>
-                    <span className="ml-2 font-medium">Python - Advanced</span>
+                    <span className="ml-2 font-medium">Python</span>
                   </div>
                   <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
                     <span className="text-accent text-xl">●</span>
                     <span className="ml-2 font-medium">JavaScript - Intermediate</span>
                   </div>
+                  <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
+                    <span className="text-accent text-xl">●</span>
+                    <span className="ml-2 font-medium"> BlockChain - Intermediate</span>
+                  </div>                  
                   <div className="flex items-center hover:bg-primary/10 px-2 py-1 transition-colors">
                     <span className="text-primary text-xl">●</span>
-                    <span className="ml-2 font-medium">React - Intermediate</span>
+                    <span className="ml-2 font-medium">React - Advanced </span>
                   </div>
                   <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
                     <span className="text-accent text-xl">●</span>
@@ -156,7 +160,11 @@ const HeroSection = () => {
                     <span className="text-accent text-xl">●</span>
                     <span className="ml-2 font-medium">HTML/CSS - Advanced</span>
                   </div>
-                </div>
+                  <div className="flex items-center hover:bg-accent/10 px-2 py-1 transition-colors">
+                    <span className="text-accent text-xl">●</span>
+                    <span className="ml-2 font-medium">Git-Github</span>
+                  </div>
+                </div>  
 
                 <div className="flex items-center mt-6 bg-secondary/20 border-l-4 border-secondary px-3 py-2">
                   <span className="text-secondary-foreground font-bold mr-2">$</span>

@@ -117,11 +117,13 @@ const AboutSection = () => {
             {/* Current Focus */}
             <div className="mt-8 pt-6 border-t-4 border-primary">
               <h4 className="font-bold text-foreground mb-3 text-sm">🎯 Current Focus</h4>
-              <div className="inline-flex items-center gap-2 bg-primary border-2 border-border px-4 py-2 retro-shadow">
-                <div className="w-2 h-2 bg-primary-foreground animate-pulse" />
-                <span className="text-sm font-bold text-primary-foreground">
-                  Full-Stack Development
-                </span>
+              <div className="flex flex-wrap gap-2">
+                {['Full-Stack Development', 'Blockchain', 'Web3'].map((focus) => (
+                  <div key={focus} className="inline-flex items-center gap-2 bg-primary border-2 border-border px-4 py-2 retro-shadow">
+                    <div className="w-2 h-2 bg-primary-foreground animate-pulse" />
+                    <span className="text-sm font-bold text-primary-foreground">{focus}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
