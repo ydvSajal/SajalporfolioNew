@@ -1,0 +1,40 @@
+# fly.toml - Configuration for Fly.io deployment
+# Generated for portfolio-backend
+
+app = "portfolio-backend"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3001"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 250
+    soft_limit = 200
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+# Set secrets with: flyctl secrets set KEY=value
+# Required secrets:
+# - DATABASE_URL
+# - UPSTASH_REDIS_REST_URL
+# - UPSTASH_REDIS_REST_TOKEN
+# - BLOB_READ_WRITE_TOKEN
+# - ADMIN_PASSWORD
+# - CRON_SECRET
+# - FRONTEND_URL

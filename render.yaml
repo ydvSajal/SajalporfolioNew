@@ -1,0 +1,23 @@
+version: 2
+services:
+  - type: web
+    name: portfolio-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      # Add your environment variables in Render dashboard:
+      # - DATABASE_URL (from Neon)
+      # - UPSTASH_REDIS_REST_URL
+      # - UPSTASH_REDIS_REST_TOKEN
+      # - BLOB_READ_WRITE_TOKEN
+      # - ADMIN_PASSWORD or ADMIN_PASSWORD_HASH
+      # - CRON_SECRET
+      # - FRONTEND_URL (your frontend URL)
+    healthCheckPath: /health
