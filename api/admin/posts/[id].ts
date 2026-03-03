@@ -108,8 +108,17 @@ export default async function handler(req: any, res: any) {
     return sendJson(res, 400, { error: "Post id is required" });
   }
 
+  // First, check if the actual HTTP method is allowed (including POST for method override)
+  if (!ensureMethod(req, res, ["GET", "POST"])) return;
+
+  // Then resolve the effective method from query param or header
   const method = resolveEffectiveMethod(req);
-  if (!ensureMethod({ ...req, method }, res, ["GET", "POST", "PATCH", "DELETE"])) return;
+
+  // Validate the resolved method
+  if (!["GET", "PATCH", "DELETE"].includes(method)) {
+    res.setHeader("Allow", "GET, POST");
+    return sendJson(res, 405, { error: "Method not allowed" });
+  }
 
   if (method === "GET") {
     const post = await getAdminPostById(id);
