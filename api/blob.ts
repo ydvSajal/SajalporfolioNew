@@ -1,10 +1,6 @@
-import { get } from "@vercel/blob";
 import { ensureMethod, sendJson } from "./_lib/http.js";
 
 const BLOB_URL_REGEX = /^https:\/\/[a-z0-9-]+\.(public|private)\.blob\.vercel-storage\.com\//i;
-
-const getBlobAccess = (url: string): "public" | "private" =>
-  url.includes(".private.blob.vercel-storage.com/") ? "private" : "public";
 
 export default async function handler(req: any, res: any) {
   if (!ensureMethod(req, res, ["GET"])) return;
@@ -14,26 +10,31 @@ export default async function handler(req: any, res: any) {
     return sendJson(res, 400, { error: "Invalid blob url" });
   }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
     return sendJson(res, 500, { error: "Blob token missing. Configure BLOB_READ_WRITE_TOKEN" });
   }
 
   try {
-    const result = await get(rawUrl, {
-      access: getBlobAccess(rawUrl),
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-      useCache: true,
+    // Use a direct fetch with Authorization header to actually retrieve blob content.
+    // @vercel/blob's get() is metadata-only — it has no .stream property.
+    const blobResponse = await fetch(rawUrl, {
+      headers: { Authorization: `Bearer ${token}` },
     });
 
-    if (!result || result.statusCode !== 200 || !result.stream) {
-      return sendJson(res, 404, { error: "Blob not found" });
+    if (!blobResponse.ok) {
+      return sendJson(res, blobResponse.status === 404 ? 404 : 502, {
+        error: "Blob not found or unreachable",
+      });
     }
 
-    const bytes = await new Response(result.stream).arrayBuffer();
+    const contentType = blobResponse.headers.get("content-type") || "application/octet-stream";
+    const cacheControl = blobResponse.headers.get("cache-control") || "public, max-age=3600";
+    const bytes = await blobResponse.arrayBuffer();
 
     res.statusCode = 200;
-    res.setHeader("Content-Type", result.blob.contentType || "application/octet-stream");
-    res.setHeader("Cache-Control", result.blob.cacheControl || "public, max-age=3600");
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", cacheControl);
     res.end(Buffer.from(bytes));
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to fetch blob";

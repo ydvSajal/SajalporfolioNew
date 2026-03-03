@@ -110,17 +110,17 @@ const toPayload = (editor: EditorState, status: PostStatus): PostPayload => {
   const blocks = [
     shortDescription
       ? {
-          id: makeBlockId('summary'),
-          type: 'paragraph' as const,
-          text: shortDescription,
-        }
+        id: makeBlockId('summary'),
+        type: 'paragraph' as const,
+        text: shortDescription,
+      }
       : null,
     detailedExperience
       ? {
-          id: makeBlockId('detail'),
-          type: 'paragraph' as const,
-          text: detailedExperience,
-        }
+        id: makeBlockId('detail'),
+        type: 'paragraph' as const,
+        text: detailedExperience,
+      }
       : null,
     ...safeImages.map((image, index) => ({
       id: makeBlockId(`image-${index}`),
@@ -310,8 +310,12 @@ const AdminPortal = () => {
     try {
       const payload = toPayload(editor, status);
 
-      if (!payload.title || !payload.organizedBy || !payload.eventStartDate || !payload.location || !payload.highlight || !payload.shortDescription) {
-        throw new Error('Title, event date, organizer, location, highlight, and short description are required');
+      if (!payload.title) {
+        throw new Error('Title is required');
+      }
+
+      if (status !== 'draft' && (!payload.organizedBy || !payload.eventStartDate || !payload.location || !payload.highlight || !payload.shortDescription)) {
+        throw new Error('Please fill in all required fields before publishing: organizer, event date, location, highlight, and short description');
       }
 
       if (selectedPostId) {
@@ -458,7 +462,6 @@ const AdminPortal = () => {
                   <form
                     onSubmit={(event) => {
                       event.preventDefault();
-                      void handleSave('draft');
                     }}
                     className="space-y-4"
                   >
@@ -489,7 +492,6 @@ const AdminPortal = () => {
                           value={editor.organizedBy}
                           onChange={(e) => setEditor((prev) => ({ ...prev, organizedBy: e.target.value }))}
                           placeholder="College / Company"
-                          required
                         />
                       </div>
                     </div>
@@ -501,7 +503,6 @@ const AdminPortal = () => {
                           type="date"
                           value={editor.eventStartDate}
                           onChange={(e) => setEditor((prev) => ({ ...prev, eventStartDate: e.target.value }))}
-                          required
                         />
                       </div>
 
@@ -521,7 +522,6 @@ const AdminPortal = () => {
                         value={editor.location}
                         onChange={(e) => setEditor((prev) => ({ ...prev, location: e.target.value }))}
                         placeholder="City / Online"
-                        required
                       />
                     </div>
 
@@ -531,7 +531,6 @@ const AdminPortal = () => {
                         value={editor.highlight}
                         onChange={(e) => setEditor((prev) => ({ ...prev, highlight: e.target.value }))}
                         placeholder="Won 1st prize among 200+ teams"
-                        required
                       />
                     </div>
 
@@ -541,7 +540,6 @@ const AdminPortal = () => {
                         value={editor.shortDescription}
                         onChange={(e) => setEditor((prev) => ({ ...prev, shortDescription: e.target.value }))}
                         rows={5}
-                        required
                       />
                     </div>
 
